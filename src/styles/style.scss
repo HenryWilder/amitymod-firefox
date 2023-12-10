@@ -1,0 +1,13 @@
+@use "colors.scss" as colors;
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: colors.$background-color;
+    color: colors.$foreground-color;
+}
