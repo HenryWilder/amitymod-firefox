@@ -1,25 +1,21 @@
 {
     "manifest_version": 2,
-    "name": "Beastify",
-    "version": "1.0",
+    "name": "Amity Mod",
+    "version": "0.1",
 
-    "description": "Adds a browser action icon to the toolbar. Click the button to choose a beast. The active tab's body content is then replaced with a picture of the chosen beast. See https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Examples#beastify",
-    "homepage_url": "https://github.com/mdn/webextensions-examples/tree/main/beastify",
+    "description": "I thought it'd be neat",
+    "homepage_url": "https://github.com/HenryWilder/amitymod-firefox",
     "icons": {
-      "48": "icons/beasts-48.png"
+        "512": "icons/goop-512.png"
     },
 
     "permissions": ["activeTab"],
 
     "browser_action": {
-      "default_icon": "icons/beasts-32.png",
-      "default_title": "Beastify",
-      "default_popup": "popup/choose_beast.html"
+        "default_icon": "icons/goop-512.png",
+        "default_title": "Amity Mod",
+        "default_popup": "popup/index.html"
     },
 
-    "web_accessible_resources": [
-      "beasts/frog.jpg",
-      "beasts/turtle.jpg",
-      "beasts/snake.jpg"
-    ]
-  }
+    "web_accessible_resources": [ ]
+}
