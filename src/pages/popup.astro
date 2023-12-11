@@ -1,5 +1,6 @@
 ---
 import "@/styles/page-base.scss";
+import { Names } from "@/scripts/settings";
 import Button from "@/components/Button.astro";
 import Toggle from "@/components/Toggle.astro";
 ---
@@ -15,8 +16,9 @@ import Toggle from "@/components/Toggle.astro";
 		<h1>Amity Mod</h1>
 		<h2>Settings</h2>
 		<form>
-			<Toggle type="checkbox" id="enable-mod-toggle" checked dataset={({ setting: "enable-mod" })}><strong>Enabled</strong></Toggle>
-			<Toggle type="checkbox" id="enable-developer_mozilla" checked dataset={({ setting: "enable-developer_mozilla"})}>developer.mozilla.org</Toggle>
+			<h3>Enable Mods</h3>
+			<Toggle type="checkbox" checked dataset={({ setting: Names.enableDeveloperMozilla })}>developer.mozilla.org</Toggle>
+
 			<Button id="save-button" kind="primary">Save</Button>
 		</form>
 	</body>
