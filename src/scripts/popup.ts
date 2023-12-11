@@ -1,4 +1,4 @@
-import * as ExtSettings from './settings';
+import * as ExtSettings from './settings.js';
 
 const settingInputs: { [key: string]: any[] } = {
     checkboxes: Array.from(document.querySelectorAll('input[type=checkbox][data-setting]')) as (HTMLInputElement & { type: 'checkbox' })[],

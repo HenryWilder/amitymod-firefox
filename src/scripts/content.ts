@@ -1,4 +1,4 @@
-import * as ExtSettings from './settings';
+import { get, Names } from './settings.js';
 
 const toggleCSS = (tab: browser.tabs.Tab, file: string, value: boolean) => {
     if (tab.id !== undefined) {
@@ -11,6 +11,6 @@ const toggleCSS = (tab: browser.tabs.Tab, file: string, value: boolean) => {
 browser.tabs.query({ active: true, currentWindow: true }).then((tabs: browser.tabs.Tab[]) => {
     const activeTab: browser.tabs.Tab = tabs[0];
     const file = 'content-styles/developer.mozilla.css';
-    const enable = ExtSettings.get(ExtSettings.Names.enableDeveloperMozilla);
+    const enable = get(Names.enableDeveloperMozilla);
     toggleCSS(activeTab, file, enable);
 });
