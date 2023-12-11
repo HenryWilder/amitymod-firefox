@@ -13,8 +13,8 @@
 
 | Theme | Background                                                                         | Accent                                                                             |
 | :---: | :--------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------: |
-| light | ![#241F32](https://via.placeholder.com/15/241F32/000000?text=+) hsl(256, 23%, 16%) | ![#7116F8](https://via.placeholder.com/15/7116F8/000000?text=+) hsl(264, 94%, 53%) |
-| dark  | ![#DDD9E7](https://via.placeholder.com/15/DDD9E7/000000?text=+) hsl(256, 23%, 88%) | ![#7116F8](https://via.placeholder.com/15/7116F8/000000?text=+) hsl(264, 94%, 53%) |
+| dark  | ![#241F32](https://via.placeholder.com/15/241F32/000000?text=+) hsl(256, 23%, 16%) | ![#7116F8](https://via.placeholder.com/15/7116F8/000000?text=+) hsl(264, 94%, 53%) |
+| light | ![#DDD9E7](https://via.placeholder.com/15/DDD9E7/000000?text=+) hsl(256, 23%, 88%) | ![#7116F8](https://via.placeholder.com/15/7116F8/000000?text=+) hsl(264, 94%, 53%) |
 
 ## Webmods
 
