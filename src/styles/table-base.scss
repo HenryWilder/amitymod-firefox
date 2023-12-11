@@ -1,7 +1,7 @@
 @use 'vars.scss' as vars;
 
-table {
-    $table-rounding: 1ch;
+table.table {
+    $table-rounding: vars.$rounding;
     $border: 1px solid vars.$accent-color;
 
     border-collapse: separate;
@@ -18,31 +18,21 @@ table {
         }
     }
 
-    th {
-        background-color: vars.$button-secondary-background-color-hover;
+    tbody th, tfoot td { background-color: vars.$button-secondary-background-color-hover;   }
+    thead th, tfoot th { background-color: vars.$button-secondary-background-color-pressed; }
+
+    & > :first-child tr:first-child {
+        td, th {
+            border-top: $border;
+            &:first-child { border-top-left-radius:  $table-rounding; }
+            &:last-child  { border-top-right-radius: $table-rounding; }
+        }
     }
 
-    thead, tbody, tfoot {
-        &:first-child {
-            tr {
-                &:first-child {
-                    td, th {
-                        border-top: $border;
-                        &:first-child { border-top-left-radius:  $table-rounding; }
-                        &:last-child  { border-top-right-radius: $table-rounding; }
-                    }
-                }
-            }
-        }
-        &:last-child {
-            tr {
-                &:last-child {
-                    td, th {
-                        &:first-child { border-bottom-left-radius:  $table-rounding; }
-                        &:last-child  { border-bottom-right-radius: $table-rounding; }
-                    }
-                }
-            }
+    & > :last-child tr:last-child {
+        td, th {
+            &:first-child { border-bottom-left-radius:  $table-rounding; }
+            &:last-child  { border-bottom-right-radius: $table-rounding; }
         }
     }
 }

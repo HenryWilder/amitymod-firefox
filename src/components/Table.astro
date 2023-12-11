@@ -1,6 +1,13 @@
 ---
 import "@/styles/table-base.scss"
+
+const hasHead = Astro.slots.has('header');
+const hasFoot = Astro.slots.has('footer');
 ---
-<table>
-    <slot></slot>
+<table class="table">
+    {hasHead && (<thead><slot name="header"/></thead>)}
+    <tbody>
+        <slot/>
+    </tbody>
+    {hasFoot && (<tfoot><slot name="footer"/></tfoot>)}
 </table>

@@ -33,25 +33,55 @@ import ButtonCombo from "@/components/ButtonCombo.astro";
 			<ToggleList label="Hello" name="fruit" type="checkbox" items={["apple", "orange", "banana", "mango"]}/>
 			<ToggleList label="Hello" name="fruit" type="radio" items={["apple", "orange", "banana", "mango"]}/>
 			<Table>
-				<tr>
+				<tr slot="header">
+					<th>.</th>
 					<th>A</th>
 					<th>B</th>
 					<th>C</th>
 				</tr>
 				<tr>
+					<th>1</th>
 					<td>A1</td>
 					<td>B1</td>
 					<td>C1</td>
 				</tr>
 				<tr>
+					<th>2</th>
 					<td>A2</td>
 					<td>B2</td>
 					<td>C2</td>
 				</tr>
 				<tr>
+					<th>3</th>
 					<td>A3</td>
 					<td>B3</td>
 					<td>C3</td>
+				</tr>
+			</Table>
+			<Table>
+				<tr>
+					<th>1</th>
+					<td>A1</td>
+					<td>B1</td>
+					<td>C1</td>
+				</tr>
+				<tr>
+					<th>2</th>
+					<td>A2</td>
+					<td>B2</td>
+					<td>C2</td>
+				</tr>
+				<tr>
+					<th>3</th>
+					<td>A3</td>
+					<td>B3</td>
+					<td>C3</td>
+				</tr>
+				<tr slot="footer">
+					<th>'</th>
+					<td>A</td>
+					<td>B</td>
+					<td>C</td>
 				</tr>
 			</Table>
 		</main>
