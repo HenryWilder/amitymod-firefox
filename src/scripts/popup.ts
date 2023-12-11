@@ -1,7 +1,7 @@
 console.log('hello world');
 
 const settingInputs: { [key: string]: any[] } = {
-    checkboxes: Array.from(document.querySelectorAll('input[type=checkbox]')) as (HTMLInputElement & { type: 'checkbox' })[],
+    checkboxes: Array.from(document.querySelectorAll('input[type=checkbox][data-setting]')) as (HTMLInputElement & { type: 'checkbox' })[],
 };
 const saveButton = document.getElementById('save-button') as HTMLButtonElement | null;
 
@@ -20,8 +20,8 @@ const loadSettings = async () => {
     const items = await browser.storage.sync.get();
     for (const inp of settingInputs.checkboxes) {
         const settingName: string = inp.dataset.setting!;
-        console.log(settingName);
-        console.log(items[settingName]);
+        console.log('Setting name:', settingName);
+        console.log('Setting value:', items[settingName]);
         inp.checked = items[settingName];
     }
 };
@@ -30,9 +30,9 @@ const saveSettings = () => {
     const items: { [key: string]: any } = {};
     for (const inp of settingInputs.checkboxes) {
         const settingName: string = inp.dataset.setting!;
-        console.log(settingName);
+        console.log('Setting name:', settingName);
         items[settingName] = inp.checked;
-        console.log(items[settingName]);
+        console.log('Setting value:', items[settingName]);
     }
     browser.storage.sync.set(items);
 };
