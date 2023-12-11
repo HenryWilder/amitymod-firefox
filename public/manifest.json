@@ -20,11 +20,19 @@
         "default_popup": "popup/index.html"
     },
 
-    "web_accessible_resources": [],
+    "web_accessible_resources": ["content-styles/*"],
 
     "browser_specific_settings": {
         "gecko": {
             "id": "amitymod-firefox@amysmilebatto.com"
         }
-    }
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["*://developer.mozilla.org/*"],
+            "css": ["content-styles/developer.mozilla.css"],
+            "js": ["scripts/content.js"]
+        }
+    ]
 }
