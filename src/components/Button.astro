@@ -1,5 +1,5 @@
 ---
-import type { InputProps } from "@/typescript/shared";
+import { type InputProps, dataAttr } from "@/typescript/shared";
 import "@/styles/input.scss"
 import Label from "./Label.astro";
 
@@ -9,10 +9,10 @@ interface Props extends InputProps {
     isToggle?: boolean;
 }
 
-const { id, label, kind, isToggle = false } = Astro.props;
+const { id, label, dataset, kind, isToggle = false } = Astro.props;
 ---
 <Label label={label}>
-    <button id={id} class:list={[ kind ]} type="button" data-toggle={isToggle ? "yes" : undefined}>
+    <button id={id} class:list={[ kind ]} type="button" data-toggle={isToggle ? "yes" : undefined} {...dataAttr(dataset)}>
         <slot/>
     </button>
 </Label>

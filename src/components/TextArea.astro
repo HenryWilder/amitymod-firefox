@@ -1,13 +1,12 @@
 ---
-import type { InputProps } from "@/typescript/shared";
+import { type InputProps, dataAttr } from "@/typescript/shared";
 import "@/styles/input.scss";
 import Label from "./Label.astro";
 
-interface Props extends InputProps {
-}
+interface Props extends InputProps {}
 
-const { id, label } = Astro.props;
+const { id, label, dataset } = Astro.props;
 ---
 <Label label={label}>
-    <textarea id={id}></textarea>
+    <textarea id={id} {...dataAttr(dataset)}></textarea>
 </Label>

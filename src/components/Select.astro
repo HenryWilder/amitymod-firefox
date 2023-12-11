@@ -1,5 +1,5 @@
 ---
-import type { InputProps } from "@/typescript/shared";
+import { type InputProps, dataAttr } from "@/typescript/shared";
 import "@/styles/input.scss";
 import Label from "./Label.astro";
 
@@ -12,10 +12,10 @@ interface Props extends InputProps {
     options: Option[];
 }
 
-const { id, label, options } = Astro.props;
+const { id, label, dataset, options } = Astro.props;
 ---
 <Label label={label}>
-    <select id={id}>
+    <select id={id} {...dataAttr(dataset)}>
         {options.map((opt: Option) => (<option value={opt.value}>{opt.text ?? opt.value}</option>))}
     </select>
 </Label>

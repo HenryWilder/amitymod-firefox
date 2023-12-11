@@ -1,25 +1,41 @@
-const isModActiveInput = document.getElementById('is-mod-active-button') as (HTMLInputElement & { type: 'checkbox' }) | null;
+console.log('hello world');
+
+const settingInputs: { [key: string]: any[] } = {
+    checkboxes: Array.from(document.querySelectorAll('input[type=checkbox]')) as (HTMLInputElement & { type: 'checkbox' })[],
+};
 const saveButton = document.getElementById('save-button') as HTMLButtonElement | null;
 
-if (isModActiveInput === null || saveButton === null) throw new Error('Critical element missing');
+if (saveButton === null) throw new Error('Critical element missing: Save button');
 
-isModActiveInput.addEventListener('click', () => {
-    setModActive(isModActiveInput.checked);
-});
+for (const categoryName in settingInputs) {
+    console.group(categoryName);
+    const category = settingInputs[categoryName];
+    for (const input of category) {
+        console.log(input);
+    }
+    console.groupEnd();
+}
 
-let isModActive: any;
-
-export const loadSettings = async () => {
-    const result = await browser.storage.sync.get('is-mod-active');
-    isModActive = result['is-mod-active'];
-    isModActiveInput.checked = isModActive;
+const loadSettings = async () => {
+    const items = await browser.storage.sync.get();
+    for (const inp of settingInputs.checkboxes) {
+        const settingName: string = inp.dataset.setting!;
+        console.log(settingName);
+        console.log(items[settingName]);
+        inp.checked = items[settingName];
+    }
 };
 
-export const saveSettings = () => {
-    browser.storage.sync.set({ 'is-mod-active': isModActive });
+const saveSettings = () => {
+    const items: { [key: string]: any } = {};
+    for (const inp of settingInputs.checkboxes) {
+        const settingName: string = inp.dataset.setting!;
+        console.log(settingName);
+        items[settingName] = inp.checked;
+        console.log(items[settingName]);
+    }
+    browser.storage.sync.set(items);
 };
 
-export const setModActive = (value: any) => (isModActive = value);
-
-document.addEventListener('DOMContentLoaded', loadSettings);
+loadSettings();
 saveButton.addEventListener('click', saveSettings);

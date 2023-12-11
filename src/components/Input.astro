@@ -1,5 +1,5 @@
 ---
-import type { InputProps } from "@/typescript/shared";
+import { type InputProps, dataAttr } from "@/typescript/shared";
 import "@/styles/input.scss";
 import Label from "./Label.astro";
 
@@ -9,8 +9,8 @@ interface Props extends InputProps {
     datalist?: `#${string}`;
 }
 
-const { id, label, type, datalist } = Astro.props;
+const { id, label, dataset, type, datalist } = Astro.props;
 ---
 <Label label={label}>
-    <input id={id} type={type} list={datalist}/>
+    <input id={id} type={type} list={datalist} {...dataAttr(dataset)}/>
 </Label>

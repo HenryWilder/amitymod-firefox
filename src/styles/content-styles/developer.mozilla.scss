@@ -1,3 +1,5 @@
+@use '../vars.scss' as vars;
+
 body {
-    border: 5px solid red !important;
+    border: 5px solid vars.$accent-color;
 }
