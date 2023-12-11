@@ -1,0 +1,9 @@
+---
+interface Props {
+    label?: string;
+}
+
+const { label } = Astro.props;
+const isLabelled = label !== undefined;
+---
+{isLabelled ? (<label>{label}<slot/></label>) : (<slot/>)}

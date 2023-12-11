@@ -1,6 +1,7 @@
 ---
 import type { InputProps } from "@/scripts/inputs";
 import "@/styles/input.scss";
+import Label from "./Label.astro";
 
 interface Option {
     text?: string;
@@ -13,9 +14,8 @@ interface Props extends InputProps {
 
 const { id, label, options } = Astro.props;
 ---
-<label>
-    <slot name="label">{label ?? ""}</slot>
+<Label label={label}>
     <select id={id}>
         {options.map((opt: Option) => (<option value={opt.value}>{opt.text ?? opt.value}</option>))}
     </select>
-</label>
+</Label>

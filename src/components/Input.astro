@@ -1,6 +1,7 @@
 ---
 import type { InputProps } from "@/scripts/inputs";
 import "@/styles/input.scss";
+import Label from "./Label.astro";
 
 interface Props extends InputProps {
     /** The style of the button */
@@ -10,7 +11,6 @@ interface Props extends InputProps {
 
 const { id, label, type, datalist } = Astro.props;
 ---
-<label>
-    <slot name="label">{label ?? ""}</slot>
+<Label label={label}>
     <input id={id} type={type} list={datalist}/>
-</label>
+</Label>

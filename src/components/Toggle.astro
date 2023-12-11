@@ -11,5 +11,5 @@ const { id, label, name, type } = Astro.props;
 ---
 <label>
     <input id={id} type={type} name={name}/>
-    <slot>{label ?? ""}</slot>
+    {label}
 </label>

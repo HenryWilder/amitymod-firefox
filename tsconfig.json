@@ -8,6 +8,7 @@
             "@/scripts/*": ["src/scripts/*"],
             "@/styles/*": ["src/styles/*"],
             "@/public/*": ["public/*"]
-        }
+        },
+        "types": ["firefox-webext-browser"]
     }
 }

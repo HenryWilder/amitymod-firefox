@@ -2,6 +2,7 @@
 import type { InputProps } from "@/scripts/inputs";
 import "@/styles/input.scss";
 import Toggle from "./Toggle.astro";
+import Label from "./Label.astro";
 
 /**
  * Props for the PickList component.
@@ -16,7 +17,8 @@ interface Props extends InputProps {
 
 const { type, label, items, name } = Astro.props;
 ---
-<label class="toggle-list">
-    <slot name="label">{label ?? ""}</slot>
-    {items.map((opt: string) => (<Toggle type={type} name={name}>{opt}</Toggle>))}
-</label>
+<Label label={label}>
+    <span class="toggle-list">
+        {items.map((opt: string) => (<Toggle type={type} name={name}>{opt}</Toggle>))}
+    </span>
+</Label>

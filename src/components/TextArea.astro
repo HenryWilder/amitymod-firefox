@@ -1,13 +1,13 @@
 ---
 import type { InputProps } from "@/scripts/inputs";
 import "@/styles/input.scss";
+import Label from "./Label.astro";
 
 interface Props extends InputProps {
 }
 
 const { id, label } = Astro.props;
 ---
-<label>
-    <slot name="label">{label ?? ""}</slot>
+<Label label={label}>
     <textarea id={id}></textarea>
-</label>
+</Label>
