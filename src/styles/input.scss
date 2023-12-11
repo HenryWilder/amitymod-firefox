@@ -1,8 +1,18 @@
 @use 'vars.scss' as vars;
 
-button {
-    cursor: pointer;
+%input {
     border: 1px solid;
+    border-radius: 3px;
+    padding: 0.25rem 1ch;
+    &:focus {
+        outline-color: vars.$accent-color;
+    }
+}
+
+button {
+    @extend %input;
+    cursor: pointer;
+    font-weight: bold;
 
     @mixin button-style($background-color, $color, $border-color, $background-color-hover, $background-color-pressed) {
         background-color: $background-color;
@@ -24,7 +34,8 @@ button {
             $color: vars.$accent-foreground-color,
             $border-color: transparent,
             $background-color-hover: vars.$button-primary-background-color-hover,
-            $background-color-pressed: vars.$button-primary-background-color-pressed);
+            $background-color-pressed: vars.$button-primary-background-color-pressed
+        );
     }
 
     &.secondary {
@@ -33,6 +44,31 @@ button {
             $color: vars.$foreground-color,
             $border-color: vars.$accent-color,
             $background-color-hover: vars.$button-secondary-background-color-hover,
-            $background-color-pressed: vars.$button-secondary-background-color-pressed);
+            $background-color-pressed: vars.$button-secondary-background-color-pressed
+        );
     }
+}
+
+input, textarea {
+    background-color: vars.$background-color;
+    color:            vars.$foreground-color;
+    border-color:     vars.$accent-color;
+    accent-color:     vars.$accent-color;
+}
+
+input {
+    @extend %input;
+}
+
+textarea {
+    @extend %input;
+}
+
+select {
+    @extend %input;
+}
+
+label.toggle-list {
+    display: flex;
+    flex-flow: column;
 }

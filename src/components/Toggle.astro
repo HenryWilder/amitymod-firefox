@@ -1,0 +1,15 @@
+---
+import type { InputProps } from "@/scripts/inputs";
+import "@/styles/input.scss";
+
+interface Props extends InputProps {
+    type: "checkbox" | "radio";
+    name?: string;
+}
+
+const { id, label, name, type } = Astro.props;
+---
+<label>
+    <input id={id} type={type} name={name}/>
+    <slot>{label ?? ""}</slot>
+</label>

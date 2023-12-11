@@ -1,0 +1,22 @@
+---
+import type { InputProps } from "@/scripts/inputs";
+import "@/styles/input.scss";
+import Toggle from "./Toggle.astro";
+
+/**
+ * Props for the PickList component.
+ * @extends InputProps
+ */
+interface Props extends InputProps {
+    /** The style of the button */
+    type: "checkbox" | "radio";
+    items: string[];
+    name: string;
+}
+
+const { type, label, items, name } = Astro.props;
+---
+<label class="toggle-list">
+    <slot name="label">{label ?? ""}</slot>
+    {items.map((opt: string) => (<Toggle type={type} name={name}>{opt}</Toggle>))}
+</label>

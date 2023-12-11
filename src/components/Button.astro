@@ -1,13 +1,17 @@
 ---
+import type { InputProps } from "@/scripts/inputs";
 import "@/styles/input.scss"
 
-interface Props {
+interface Props extends InputProps {
     /** The style of the button */
-    kind: "primary" | "secondary";
+    kind: 'primary' | 'secondary';
 }
 
-const { kind } = Astro.props;
+const { id, label, kind } = Astro.props;
 ---
-<button class:list={[ kind ]} type="button">
-    <slot/>
-</button>
+<label>
+    <slot name="label"/>{label ?? ""}</label>
+    <button id={id} class:list={[ kind ]} type="button">
+        <slot/>
+    </button>
+</label>

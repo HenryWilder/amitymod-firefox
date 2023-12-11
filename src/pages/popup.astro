@@ -2,6 +2,9 @@
 import "@/styles/page-base.scss";
 import "@/scripts/popup";
 import Button from "@/components/Button.astro";
+import Input from "@/components/Input.astro";
+import Toggle from "@/components/Toggle.astro";
+import ToggleList from "@/components/ToggleList.astro";
 ---
 
 <html lang="en">
@@ -12,8 +15,14 @@ import Button from "@/components/Button.astro";
 	</head>
 	<body>
 		<h1>Amity Mod</h1>
-		This is a test!
-		<Button kind="primary">Primary</Button>
-		<Button kind="secondary">Secondary</Button>
+		This is a test<br/>
+		<Button kind="primary">Primary</Button><br/>
+		<Button kind="secondary">Secondary</Button><br/>
+		<Input type="text"/><br/>
+		<Input type="number"/><br/>
+		<Toggle type="checkbox" label="Test"/><br/>
+		<Toggle type="radio" label="Test"/><br/>
+		<ToggleList label="Hello" name="fruit" type="checkbox" items={["apple", "orange", "banana", "mango"]}/>
+		<ToggleList label="Hello" name="fruit" type="radio" items={["apple", "orange", "banana", "mango"]}/>
 	</body>
 </html>

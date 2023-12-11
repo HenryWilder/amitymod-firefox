@@ -1,0 +1,21 @@
+---
+import type { InputProps } from "@/scripts/inputs";
+import "@/styles/input.scss";
+
+interface Option {
+    text?: string;
+    value: string;
+}
+
+interface Props extends InputProps {
+    options: Option[];
+}
+
+const { id, label, options } = Astro.props;
+---
+<label>
+    <slot name="label">{label ?? ""}</slot>
+    <select id={id}>
+        {options.map((opt: Option) => (<option value={opt.value}>{opt.text ?? opt.value}</option>))}
+    </select>
+</label>
