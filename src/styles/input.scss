@@ -1,0 +1,38 @@
+@use 'vars.scss' as vars;
+
+button {
+    cursor: pointer;
+    border: 1px solid;
+
+    @mixin button-style($background-color, $color, $border-color, $background-color-hover, $background-color-pressed) {
+        background-color: $background-color;
+        color: $color;
+        border-color: $border-color;
+
+        &:hover {
+            background-color: $background-color-hover;
+        }
+
+        &:active {
+            background-color: $background-color-pressed;
+        }
+    }
+
+    &.primary {
+        @include button-style(
+            $background-color: vars.$button-primary-background-color,
+            $color: vars.$accent-foreground-color,
+            $border-color: transparent,
+            $background-color-hover: vars.$button-primary-background-color-hover,
+            $background-color-pressed: vars.$button-primary-background-color-pressed);
+    }
+
+    &.secondary {
+        @include button-style(
+            $background-color: vars.$button-secondary-background-color,
+            $color: vars.$foreground-color,
+            $border-color: vars.$accent-color,
+            $background-color-hover: vars.$button-secondary-background-color-hover,
+            $background-color-pressed: vars.$button-secondary-background-color-pressed);
+    }
+}

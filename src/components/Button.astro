@@ -1,0 +1,13 @@
+---
+import "@/styles/input.scss"
+
+interface Props {
+    /** The style of the button */
+    kind: "primary" | "secondary";
+}
+
+const { kind } = Astro.props;
+---
+<button class:list={[ kind ]} type="button">
+    <slot/>
+</button>

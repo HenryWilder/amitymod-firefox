@@ -1,0 +1,38 @@
+:root {
+    --background-color: white;
+    --foreground-color: black;
+
+    --accent-color-r: 30;
+    --accent-color-g: 144;
+    --accent-color-b: 255;
+    --accent-color-rgb: var(--accent-color-r) var(--accent-color-g) var(--accent-color-b);
+    --accent-color: rgb(var(--accent-color-rgb));
+    --accent-foreground-color: black;
+
+    --hover-amount: 25%;
+    --pressed-amount: 50%;
+
+    --button-primary-background-color:           var(--accent-color);
+    --button-primary-background-color-hover:     color-mix(in srgb, var(--accent-color), var(--foreground-color) var(--hover-amount));
+    --button-primary-background-color-pressed:   color-mix(in srgb, var(--accent-color), var(--foreground-color) var(--pressed-amount));
+
+    --button-secondary-background-color:         transparent;
+    --button-secondary-background-color-hover:   rgb(var(--accent-color-rgb) / var(--hover-amount));
+    --button-secondary-background-color-pressed: rgb(var(--accent-color-rgb) / var(--pressed-amount));
+
+    @media (prefers-color-scheme: dark) {
+        --background-color: black;
+        --foreground-color: white;
+    }
+}
+
+$background-color:                          var(--background-color);
+$foreground-color:                          var(--foreground-color);
+$accent-color:                              var(--accent-color);
+$accent-foreground-color:                   var(--accent-foreground-color);
+$button-primary-background-color:           var(--button-primary-background-color);
+$button-primary-background-color-hover:     var(--button-primary-background-color-hover);
+$button-primary-background-color-pressed:   var(--button-primary-background-color-pressed);
+$button-secondary-background-color:         var(--button-secondary-background-color);
+$button-secondary-background-color-hover:   var(--button-secondary-background-color-hover);
+$button-secondary-background-color-pressed: var(--button-secondary-background-color-pressed);

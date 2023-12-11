@@ -1,0 +1,13 @@
+@use 'vars.scss' as vars;
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: vars.$background-color;
+    color: vars.$foreground-color;
+}

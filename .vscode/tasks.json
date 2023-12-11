@@ -11,6 +11,13 @@
             "problemMatcher": [],
             "label": "npm: build",
             "detail": "astro check && astro build"
+        },
+        {
+            "label": "compile current scss file",
+            "type": "shell",
+            "command": "sass",
+            "args": ["${file}"],
+            "problemMatcher": ["$node-sass"]
         }
     ]
 }
