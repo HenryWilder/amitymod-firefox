@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "tsc": "tsc -p src/scripts/tsconfig.json",
-    "sass": "shx mkdir -p dist/content-styles && sass --update --no-source-map src/styles/content-styles/:dist/content-styles/",
-    "build": "astro check && astro build && npm run build-scripts && npm run build-sass",
+    "build-typescript": "tsc -p src/scripts/tsconfig.json",
+    "build-sass": "shx mkdir -p dist/content-styles && sass --update --no-source-map src/styles/content-styles/:dist/content-styles/",
+    "build": "astro check && astro build && npm run build-typescript && npm run build-sass",
     "preview": "astro preview",
     "astro": "astro"
   },
