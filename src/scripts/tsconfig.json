@@ -5,7 +5,7 @@
         "outDir": "../../dist/scripts/",
         "rootDir": "./",
         "strict": true,
-        "esModuleInterop": true
-    },
-    "include": ["**/*.ts"]
+        "esModuleInterop": true,
+        "skipLibCheck": true
+    }
 }
