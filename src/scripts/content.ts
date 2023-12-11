@@ -1,4 +1,6 @@
-import { get, Names } from './settings.js';
+const settings = {
+    enableDeveloperMozilla: 'enable-developer_mozilla',
+};
 
 const toggleCSS = (tab: browser.tabs.Tab, file: string, value: boolean) => {
     if (tab.id !== undefined) {
@@ -11,6 +13,6 @@ const toggleCSS = (tab: browser.tabs.Tab, file: string, value: boolean) => {
 browser.tabs.query({ active: true, currentWindow: true }).then((tabs: browser.tabs.Tab[]) => {
     const activeTab: browser.tabs.Tab = tabs[0];
     const file = 'content-styles/developer.mozilla.css';
-    const enable = get(Names.enableDeveloperMozilla);
-    toggleCSS(activeTab, file, enable);
+    const settingKey = settings.enableDeveloperMozilla;
+    browser.storage.sync.get(settingKey).then((items) => toggleCSS(activeTab, file, items[settingKey]));
 });

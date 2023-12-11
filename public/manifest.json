@@ -32,7 +32,6 @@
     "content_scripts": [
         {
             "matches": ["*://developer.mozilla.org/*"],
-            "css": ["content-styles/developer.mozilla.css"],
             "js": ["scripts/content.js"]
         }
     ]

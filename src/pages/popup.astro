@@ -1,6 +1,5 @@
 ---
 import "@/styles/page-base.scss";
-import { Names } from "@/scripts/settings";
 import Button from "@/components/Button.astro";
 import Toggle from "@/components/Toggle.astro";
 ---
@@ -17,7 +16,7 @@ import Toggle from "@/components/Toggle.astro";
 		<h2>Settings</h2>
 		<form>
 			<h3>Enable Mods</h3>
-			<Toggle type="checkbox" checked dataset={({ setting: Names.enableDeveloperMozilla })}>developer.mozilla.org</Toggle>
+			<Toggle type="checkbox" checked dataset={({ setting: 'enable-developer_mozilla' })}>developer.mozilla.org</Toggle>
 
 			<Button id="save-button" kind="primary">Save</Button>
 		</form>

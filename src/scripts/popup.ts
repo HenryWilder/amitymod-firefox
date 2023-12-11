@@ -1,5 +1,3 @@
-import * as ExtSettings from './settings.js';
-
 const settingInputs: { [key: string]: any[] } = {
     checkboxes: Array.from(document.querySelectorAll('input[type=checkbox][data-setting]')) as (HTMLInputElement & { type: 'checkbox' })[],
 };
@@ -24,7 +22,6 @@ const loadSettings = async () => {
         // console.log('Setting value:', items[settingName]);
         inp.checked = items[settingName];
     }
-    ExtSettings.setAll(items);
 };
 
 const saveSettings = () => {
@@ -36,7 +33,6 @@ const saveSettings = () => {
         // console.log('Setting value:', items[settingName]);
     }
     browser.storage.sync.set(items);
-    ExtSettings.setAll(items);
 };
 
 loadSettings();
