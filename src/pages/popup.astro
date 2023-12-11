@@ -1,13 +1,6 @@
 ---
 import "@/styles/page-base.scss";
-import "@/scripts/popup";
 import Button from "@/components/Button.astro";
-import Input from "@/components/Input.astro";
-import Toggle from "@/components/Toggle.astro";
-import ToggleList from "@/components/ToggleList.astro";
-import Table from "@/components/Table.astro";
-import ButtonCombo from "@/components/ButtonCombo.astro";
-import TextArea from "@/components/TextArea.astro";
 ---
 
 <html lang="en">
@@ -22,20 +15,6 @@ import TextArea from "@/components/TextArea.astro";
 		This is a test<br/>
 		<Button id="is-mod-active-button" kind="primary" isToggle={true}>Active</Button><br/>
 		<Button id="save-button" kind="primary">Save</Button><br/>
-		<script>
-			import { saveSettings, loadSettings, setModActive } from '@/scripts/popup';
-
-			const isModActiveInput = document.getElementById('is-mod-active-button') as HTMLButtonElement | null;
-			const saveButton = document.getElementById('save-button') as HTMLButtonElement | null;
-
-			if (isModActiveInput === null || saveButton === null) throw new Error("Critical element missing");
-
-			isModActiveInput.addEventListener('click', () => {
-				setModActive(isModActiveInput.classList.contains('primary'));
-			});
-
-			loadSettings();
-			saveButton.addEventListener('click', saveSettings);
-		</script>
+		<script type="module" is:inline src="../scripts/popup.js"></script>
 	</body>
 </html>

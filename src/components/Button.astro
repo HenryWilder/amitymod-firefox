@@ -1,5 +1,5 @@
 ---
-import type { InputProps } from "@/scripts/inputs";
+import type { InputProps } from "@/scripts/shared";
 import "@/styles/input.scss"
 import Label from "./Label.astro";
 
@@ -18,11 +18,11 @@ const { id, label, kind, isToggle = false } = Astro.props;
 </Label>
 
 <script>
-    import { toggleButtonState } from "@/scripts/inputs";
-    const toggleButtons: HTMLButtonElement[] = Array.from(document.querySelectorAll('.button-combo[data-kind="multi"] button, button[data-toggle="yes"]'));
-    for (const btn of toggleButtons) {
-        btn.addEventListener('click', () => {
-            toggleButtonState(btn);
-        });
-    }
+    // import { toggleButtonState } from "@/scripts/shared";
+    // const toggleButtons: HTMLButtonElement[] = Array.from(document.querySelectorAll('.button-combo[data-kind="multi"] button, button[data-toggle="yes"]'));
+    // for (const btn of toggleButtons) {
+    //     btn.addEventListener('click', () => {
+    //         toggleButtonState(btn);
+    //     });
+    // }
 </script>
