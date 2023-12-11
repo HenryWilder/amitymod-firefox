@@ -1,5 +1,5 @@
 ---
-import type { InputProps } from "@/scripts/shared";
+import type { InputProps } from "@/typescript/shared";
 import Button from "./Button.astro";
 
 interface Item {
@@ -17,6 +17,10 @@ interface Props extends InputProps {
      * `multi` - Buttons toggle between primary and secondary like checkboxes when clicked.
      */
     kind: "static" | "single" | "multi";
+
+    /**
+     * Collection of button-definitions.
+     */
     items: Item[];
 }
 
@@ -26,3 +30,5 @@ const isMulti: boolean = kind === "multi";
 <span class="button-combo" data-kind={kind}>
     {items.map((item: Item) => (<Button kind={item.kind}>{item.content}</Button>))}
 </span>
+
+<script type="module" src="/scripts/button-combo.js" defer></script>

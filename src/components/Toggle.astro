@@ -1,15 +1,16 @@
 ---
-import type { InputProps } from "@/scripts/shared";
+import type { InputProps } from "@/typescript/shared";
 import "@/styles/input.scss";
 
 interface Props extends InputProps {
     type: "checkbox" | "radio";
     name?: string;
+    checked?: boolean;
 }
 
-const { id, label, name, type } = Astro.props;
+const { id, label, name, type, checked } = Astro.props;
 ---
 <label>
-    <input id={id} type={type} name={name}/>
-    {label}
+    <input id={id} type={type} name={name} checked={checked}/>
+    <slot>{label}</slot>
 </label>

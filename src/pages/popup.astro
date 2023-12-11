@@ -1,6 +1,7 @@
 ---
 import "@/styles/page-base.scss";
 import Button from "@/components/Button.astro";
+import Toggle from "@/components/Toggle.astro";
 ---
 
 <html lang="en">
@@ -8,14 +9,14 @@ import Button from "@/components/Button.astro";
 		<meta charset="utf-8"/>
 		<link rel="icon" type="image" href="/icons/goop-512.png"/>
 		<title>Settings - Amity Mod</title>
-		<script type="module" src="../scripts/popup.js" defer></script>
-		<script type="module" src="../scripts/input.js" defer></script>
+		<script type="module" src="/scripts/popup.js" defer></script>
 	</head>
 	<body>
 		<h1>Amity Mod</h1>
 		<h2>Settings</h2>
-		This is a test<br/>
-		<Button id="is-mod-active-button" kind="primary" isToggle={true}>Active</Button><br/>
-		<Button id="save-button" kind="primary">Save</Button><br/>
+		<form>
+			<Toggle id="is-mod-active-button" type="checkbox" checked>Active</Toggle><br/>
+			<Button id="save-button" kind="primary">Save</Button><br/>
+		</form>
 	</body>
 </html>

@@ -1,11 +1,10 @@
-const isModActiveInput = document.getElementById('is-mod-active-button') as HTMLButtonElement | null;
+const isModActiveInput = document.getElementById('is-mod-active-button') as (HTMLInputElement & { type: 'checkbox' }) | null;
 const saveButton = document.getElementById('save-button') as HTMLButtonElement | null;
 
 if (isModActiveInput === null || saveButton === null) throw new Error('Critical element missing');
 
 isModActiveInput.addEventListener('click', () => {
-    isModActiveInput.classList.toggle('secondary', !isModActiveInput.classList.toggle('primary'));
-    setModActive(isModActiveInput.classList.contains('primary'));
+    setModActive(isModActiveInput.checked);
 });
 
 let isModActive: any;
@@ -13,7 +12,7 @@ let isModActive: any;
 export const loadSettings = async () => {
     const result = await browser.storage.sync.get('is-mod-active');
     isModActive = result['is-mod-active'];
-    isModActiveInput.classList.toggle('secondary', !isModActiveInput.classList.toggle('primary', isModActive));
+    isModActiveInput.checked = isModActive;
 };
 
 export const saveSettings = () => {
