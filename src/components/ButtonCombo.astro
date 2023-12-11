@@ -1,0 +1,18 @@
+---
+import type { InputProps } from "@/scripts/inputs";
+import Button from "./Button.astro";
+
+interface Item {
+    kind: "primary" | "secondary";
+    content: any;
+}
+
+interface Props extends InputProps {
+    items: Item[];
+}
+
+const { id, label, items } = Astro.props;
+---
+<span class="button-combo">
+    {items.map((item: Item) => (<Button kind={item.kind}>{item.content}</Button>))}
+</span>

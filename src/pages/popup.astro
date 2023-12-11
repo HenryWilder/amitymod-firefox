@@ -5,6 +5,8 @@ import Button from "@/components/Button.astro";
 import Input from "@/components/Input.astro";
 import Toggle from "@/components/Toggle.astro";
 import ToggleList from "@/components/ToggleList.astro";
+import Table from "@/components/Table.astro";
+import ButtonCombo from "@/components/ButtonCombo.astro";
 ---
 
 <html lang="en">
@@ -15,14 +17,43 @@ import ToggleList from "@/components/ToggleList.astro";
 	</head>
 	<body>
 		<h1>Amity Mod</h1>
-		This is a test<br/>
-		<Button kind="primary">Primary</Button><br/>
-		<Button kind="secondary">Secondary</Button><br/>
-		<Input type="text"/><br/>
-		<Input type="number"/><br/>
-		<Toggle type="checkbox" label="Test"/><br/>
-		<Toggle type="radio" label="Test"/><br/>
-		<ToggleList label="Hello" name="fruit" type="checkbox" items={["apple", "orange", "banana", "mango"]}/>
-		<ToggleList label="Hello" name="fruit" type="radio" items={["apple", "orange", "banana", "mango"]}/>
+		<main>
+			This is a test<br/>
+			<ButtonCombo items={[
+				{ kind: "primary",   content: "left" },
+				{ kind: "secondary", content: "middle" },
+				{ kind: "secondary", content: "right" }
+			]}/><br/>
+			<Button kind="primary">Primary</Button><br/>
+			<Button kind="secondary">Secondary</Button><br/>
+			<Input type="text"/><br/>
+			<Input type="number"/><br/>
+			<Toggle type="checkbox" label="Test"/><br/>
+			<Toggle type="radio" label="Test"/><br/>
+			<ToggleList label="Hello" name="fruit" type="checkbox" items={["apple", "orange", "banana", "mango"]}/>
+			<ToggleList label="Hello" name="fruit" type="radio" items={["apple", "orange", "banana", "mango"]}/>
+			<Table>
+				<tr>
+					<th>A</th>
+					<th>B</th>
+					<th>C</th>
+				</tr>
+				<tr>
+					<td>A1</td>
+					<td>B1</td>
+					<td>C1</td>
+				</tr>
+				<tr>
+					<td>A2</td>
+					<td>B2</td>
+					<td>C2</td>
+				</tr>
+				<tr>
+					<td>A3</td>
+					<td>B3</td>
+					<td>C3</td>
+				</tr>
+			</Table>
+		</main>
 	</body>
 </html>

@@ -1,0 +1,48 @@
+@use 'vars.scss' as vars;
+
+table {
+    $table-rounding: 1ch;
+    $border: 1px solid vars.$accent-color;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    td, th {
+        border: none {
+            bottom: $border;
+            right: $border;
+        }
+        padding: 0.25rem 1ch;
+        &:first-child {
+            border-left: $border;
+        }
+    }
+
+    th {
+        background-color: vars.$button-secondary-background-color-hover;
+    }
+
+    thead, tbody, tfoot {
+        &:first-child {
+            tr {
+                &:first-child {
+                    td, th {
+                        border-top: $border;
+                        &:first-child { border-top-left-radius:  $table-rounding; }
+                        &:last-child  { border-top-right-radius: $table-rounding; }
+                    }
+                }
+            }
+        }
+        &:last-child {
+            tr {
+                &:last-child {
+                    td, th {
+                        &:first-child { border-bottom-left-radius:  $table-rounding; }
+                        &:last-child  { border-bottom-right-radius: $table-rounding; }
+                    }
+                }
+            }
+        }
+    }
+}

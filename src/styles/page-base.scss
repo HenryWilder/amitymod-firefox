@@ -10,4 +10,7 @@ body {
 body {
     background-color: vars.$background-color;
     color: vars.$foreground-color;
+    main {
+        margin: 1rem;
+    }
 }

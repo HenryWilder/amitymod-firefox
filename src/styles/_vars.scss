@@ -24,6 +24,8 @@
         --background-color: black;
         --foreground-color: white;
     }
+
+    --rounding: 6px;
 }
 
 $background-color:                          var(--background-color);
@@ -36,3 +38,4 @@ $button-primary-background-color-pressed:   var(--button-primary-background-colo
 $button-secondary-background-color:         var(--button-secondary-background-color);
 $button-secondary-background-color-hover:   var(--button-secondary-background-color-hover);
 $button-secondary-background-color-pressed: var(--button-secondary-background-color-pressed);
+$rounding:                                  var(--rounding);
