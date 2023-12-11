@@ -11,7 +11,8 @@ isModActiveInput.addEventListener('click', () => {
 let isModActive: any;
 
 export const loadSettings = async () => {
-    isModActive = await browser.storage.sync.get('is-mod-active');
+    const result = await browser.storage.sync.get('is-mod-active');
+    isModActive = result['is-mod-active'];
     isModActiveInput.classList.toggle('secondary', !isModActiveInput.classList.toggle('primary', isModActive));
 };
 
@@ -21,5 +22,5 @@ export const saveSettings = () => {
 
 export const setModActive = (value: any) => (isModActive = value);
 
-loadSettings();
+document.addEventListener('DOMContentLoaded', loadSettings);
 saveButton.addEventListener('click', saveSettings);

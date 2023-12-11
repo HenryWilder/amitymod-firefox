@@ -8,6 +8,8 @@ import Button from "@/components/Button.astro";
 		<meta charset="utf-8"/>
 		<link rel="icon" type="image" href="/icons/goop-512.png"/>
 		<title>Settings - Amity Mod</title>
+		<script type="module" src="../scripts/popup.js" defer></script>
+		<script type="module" src="../scripts/input.js" defer></script>
 	</head>
 	<body>
 		<h1>Amity Mod</h1>
@@ -15,6 +17,5 @@ import Button from "@/components/Button.astro";
 		This is a test<br/>
 		<Button id="is-mod-active-button" kind="primary" isToggle={true}>Active</Button><br/>
 		<Button id="save-button" kind="primary">Save</Button><br/>
-		<script type="module" is:inline src="../scripts/popup.js"></script>
 	</body>
 </html>
