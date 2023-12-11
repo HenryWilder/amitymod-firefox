@@ -1,5 +1,5 @@
 @use '../vars.scss' as vars;
 
-body {
-    border: 5px solid vars.$accent-color;
+:root {
+    --background-primary: #{vars.$background-color} !important;
 }

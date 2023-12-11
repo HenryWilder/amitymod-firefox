@@ -5,7 +5,7 @@ export interface InputProps {
     dataset?: Dataset;
 }
 
-export const dataAttr = (dataset?: Dataset): Dataset | undefined => {
+export const dataA1ttr = (dataset?: Dataset): Dataset | undefined => {
     if (dataset !== undefined) {
         return Object.fromEntries(Object.entries(dataset).map((entry) => ['data-' + entry[0], entry[1]]));
     }

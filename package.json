@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build-scripts": "tsc -p src/scripts/tsconfig.json",
-    "build-sass": "mkdir ./dist/content-styles/ || sass --update --no-source-map src/styles/content-styles/:dist/content-styles/",
+    "tsc": "tsc -p src/scripts/tsconfig.json",
+    "sass": "shx mkdir -p dist/content-styles && sass --update --no-source-map src/styles/content-styles/:dist/content-styles/",
     "build": "astro check && astro build && npm run build-scripts && npm run build-sass",
     "preview": "astro preview",
     "astro": "astro"
@@ -17,5 +17,8 @@
     "astro": "^4.0.3",
     "sass": "^1.69.5",
     "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "shx": "^0.3.4"
   }
 }
