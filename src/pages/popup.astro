@@ -7,6 +7,7 @@ import Toggle from "@/components/Toggle.astro";
 import ToggleList from "@/components/ToggleList.astro";
 import Table from "@/components/Table.astro";
 import ButtonCombo from "@/components/ButtonCombo.astro";
+import TextArea from "@/components/TextArea.astro";
 ---
 
 <html lang="en">
@@ -19,19 +20,31 @@ import ButtonCombo from "@/components/ButtonCombo.astro";
 		<h1>Amity Mod</h1>
 		<main>
 			This is a test<br/>
-			<ButtonCombo items={[
+			<ButtonCombo kind="single" items={[
 				{ kind: "primary",   content: "left" },
 				{ kind: "secondary", content: "middle" },
-				{ kind: "secondary", content: "right" }
-			]}/><br/>
+				{ kind: "secondary", content: "right" }]}/><br/>
+			<ButtonCombo kind="multi" items={[
+				{ kind: "primary",   content: "left" },
+				{ kind: "secondary", content: "middle" },
+				{ kind: "secondary", content: "right" }]}/><br/>
 			<Button kind="primary">Primary</Button><br/>
-			<Button kind="secondary">Secondary</Button><br/>
+			<Button kind="secondary" isToggle={true}>Secondary</Button><br/>
 			<Input type="text"/><br/>
 			<Input type="number"/><br/>
+			<TextArea></TextArea><br/>
 			<Toggle type="checkbox" label="Test"/><br/>
 			<Toggle type="radio" label="Test"/><br/>
-			<ToggleList label="Hello" name="fruit" type="checkbox" items={["apple", "orange", "banana", "mango"]}/>
-			<ToggleList label="Hello" name="fruit" type="radio" items={["apple", "orange", "banana", "mango"]}/>
+			<ToggleList label="Hello" name="fruit" type="checkbox" items={[
+				"apple",
+				"orange",
+				"banana",
+				"mango"]}/><br/>
+			<ToggleList label="Hello" name="fruit" type="radio" items={[
+				"apple",
+				"orange",
+				"banana",
+				"mango"]}/><br/>
 			<Table>
 				<tr slot="header">
 					<th>.</th>

@@ -5,13 +5,22 @@ import "@/styles/input.scss"
 interface Props extends InputProps {
     /** The style of the button */
     kind: 'primary' | 'secondary';
+    isToggle?: boolean;
 }
 
-const { id, label, kind } = Astro.props;
+const { id, label, kind, isToggle = false } = Astro.props;
 ---
 <label>
     <slot name="label"/>{label ?? ""}</label>
-    <button id={id} class:list={[ kind ]} type="button">
+    <button id={id} class:list={[ kind ]} type="button" data-toggle={isToggle ? "yes" : undefined}>
         <slot/>
     </button>
 </label>
+<script>
+    const toggleButtons: HTMLButtonElement[] = Array.from(document.querySelectorAll('.button-combo[data-kind="multi"] button, button[data-toggle="yes"]'));
+    for (const btn of toggleButtons) {
+        btn.addEventListener('click', () => {
+            btn.classList.toggle('secondary', !btn.classList.toggle('primary'));
+        });
+    }
+</script>

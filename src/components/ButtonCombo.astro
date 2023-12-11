@@ -8,11 +8,36 @@ interface Item {
 }
 
 interface Props extends InputProps {
+    /**
+     * `static` - Primary vs secondary is not affected by clicking.
+     *
+     * `single` - Buttons pass around a single primary state like radios when clicked.
+     * Only the first instance of "primary" in `items` is respected.
+     *
+     * `multi` - Buttons toggle between primary and secondary like checkboxes when clicked.
+     */
+    kind: "static" | "single" | "multi";
     items: Item[];
 }
 
-const { id, label, items } = Astro.props;
+const { id, label, kind = "static", items } = Astro.props;
+const isMulti: boolean = kind === "multi";
 ---
-<span class="button-combo">
+<span class="button-combo" data-kind={kind}>
     {items.map((item: Item) => (<Button kind={item.kind}>{item.content}</Button>))}
 </span>
+
+<script>
+    const radioCombos:  HTMLElement[] = Array.from(document.querySelectorAll('.button-combo[data-kind="single"]'));
+    for (const combo of radioCombos) {
+        const buttons: HTMLButtonElement[] = Array.from(combo.querySelectorAll('button'));
+        for (const btn of buttons) {
+            btn.addEventListener('click', () => {
+                for (const other of buttons) {
+                    other.classList.replace('primary', 'secondary');
+                }
+                btn.classList.replace('secondary', 'primary');
+            });
+        }
+    }
+</script>
