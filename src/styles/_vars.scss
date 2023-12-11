@@ -1,12 +1,14 @@
 :root {
-    --background-color: white;
+    --background-color: hsl(256, 23%, 88%);
     --foreground-color: black;
 
-    --accent-color-r: 144;
-    --accent-color-g: 30;
-    --accent-color-b: 255;
-    --accent-color-rgb: var(--accent-color-r) var(--accent-color-g) var(--accent-color-b);
-    --accent-color: rgb(var(--accent-color-rgb));
+    @media (prefers-color-scheme: dark) {
+        --background-color: hsl(256, 23%, 16%);
+        --foreground-color: white;
+    }
+
+    --accent-color-hsl: 264 94% 53%;
+    --accent-color: hsl(var(--accent-color-hsl));
     --accent-foreground-color: black;
 
     --hover-amount: 25%;
@@ -17,13 +19,8 @@
     --button-primary-background-color-pressed:   color-mix(in srgb, var(--accent-color), var(--foreground-color) var(--pressed-amount));
 
     --button-secondary-background-color:         transparent;
-    --button-secondary-background-color-hover:   rgb(var(--accent-color-rgb) / var(--hover-amount));
-    --button-secondary-background-color-pressed: rgb(var(--accent-color-rgb) / var(--pressed-amount));
-
-    @media (prefers-color-scheme: dark) {
-        --background-color: black;
-        --foreground-color: white;
-    }
+    --button-secondary-background-color-hover:   hsl(var(--accent-color-hsl) / var(--hover-amount));
+    --button-secondary-background-color-pressed: hsl(var(--accent-color-hsl) / var(--pressed-amount));
 
     --rounding: 1ch;
 }
