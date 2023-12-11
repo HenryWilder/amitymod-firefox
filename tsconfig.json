@@ -1,5 +1,4 @@
 {
-    "$schema": "https://json.schemastore.org/tsconfig",
     "extends": "astro/tsconfigs/strict",
     "compilerOptions": {
         "baseUrl": ".",
@@ -11,7 +10,7 @@
             "@/typescript/*": ["src/typescript/*"],
             "@/public/*": ["public/*"]
         },
-        "types": ["firefox-webext-browser", "babel"],
+        "types": ["firefox-webext-browser"],
         "skipLibCheck": true
     }
 }
