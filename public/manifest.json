@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Amity Mod",
     "version": "0.1",
 
@@ -12,27 +12,34 @@
     "permissions": [
         "activeTab",
         "tabs",
-        "storage"
+        "storage",
+        "scripting"
     ],
 
-    "browser_action": {
-        "default_icon": "icons/goop-512.png",
+    "action": {
+        "default_icon": {
+            "512": "icons/goop-512.png"
+        },
         "default_title": "Amity Mod",
-        "default_popup": "popup/index.html"
+        "default_popup": "popup.html"
     },
 
-    "web_accessible_resources": ["content-styles/*"],
-
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "amitymod-firefox@amysmilebatto.com"
-        }
-    },
-
-    "content_scripts": [
+    "web_accessible_resources": [
         {
-            "matches": ["*://developer.mozilla.org/*"],
-            "js": ["scripts/content.js"]
+            "resources": ["styles/vars.css"],
+            "matches": ["<all_urls>"]
+        },
+        {
+            "resources": ["content-styles/developer.mozilla.css"],
+            "matches": ["*://developer.mozilla.org/*"]
         }
-    ]
+    ],
+
+    "host_permissions": [
+        "*://developer.mozilla.org/*"
+    ],
+
+    "background": {
+        "scripts": ["scripts/background.js"]
+    }
 }

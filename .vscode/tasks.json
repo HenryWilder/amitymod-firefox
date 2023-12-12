@@ -5,6 +5,20 @@
             "label": "Build Astro",
             "type": "npm",
             "script": "build-astro",
+            "problemMatcher": {
+                "owner": "Astro",
+                "pattern": [
+                    {
+                        "regexp": "^([^\\s]+):(\\d+):(\\d+) - (error|warning) ([^\\s]+): (.*)$",
+                        "file": 1,
+                        "line": 2,
+                        "column": 3,
+                        "severity": 4,
+                        "code": 5,
+                        "message": 6
+                    }
+                ]
+            },
             "group": "build"
         },
         {
@@ -31,7 +45,24 @@
             "label": "Build All",
             "type": "npm",
             "script": "build",
-            "problemMatcher": ["$tsc", "$node-sass"],
+            "problemMatcher": [
+                {
+                    "owner": "Astro",
+                    "pattern": [
+                        {
+                            "regexp": "^([^\\s]+):(\\d+):(\\d+) - (error|warning) ([^\\s]+): (.*)$",
+                            "file": 1,
+                            "line": 2,
+                            "column": 3,
+                            "severity": 4,
+                            "code": 5,
+                            "message": 6
+                        }
+                    ]
+                },
+                "$tsc",
+                "$node-sass"
+            ],
             "group": "build"
         }
     ]
