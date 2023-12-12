@@ -1,4 +1,6 @@
-import { settings } from './settings.js';
+const contentStyles: { [setting: string]: string } = {
+    'enable-developer_mozilla': 'developer.mozilla',
+};
 
 const toggleCSS = (target: browser.scripting.InjectionTarget, files: string[], value: boolean) => {
     const injection: browser.scripting.CSSInjection = { target, files };
@@ -16,10 +18,22 @@ const getTarget = async (): Promise<browser.scripting.InjectionTarget> => {
     return { tabId: activeTab.id };
 };
 
-const updateCSSInjection = async (enabledKey: string, files: string[]): Promise<void> => {
-    const [target, enabledSet] = await Promise.all([getTarget(), browser.storage.sync.get(enabledKey)]);
-    toggleCSS(target, files, enabledSet[enabledKey]);
+const updateCSSInjection = async (enabled: boolean, files: string[]): Promise<void> => {
+    const target = await getTarget();
+    toggleCSS(target, files, enabled);
 };
 
 const sharedCSS: string[] = ['styles/vars.css'];
-updateCSSInjection(settings.enableDeveloperMozilla, [...sharedCSS, 'content-styles/developer.mozilla.css']);
+
+browser.runtime.onConnect.addListener((port) => {
+    port.onMessage.addListener((msg: any) => {
+        const { action, values } = msg;
+        if (action === 'update css') {
+            console.debug(`[ WORKER ] Received message:`, msg);
+            for (const key in values) {
+                let cssFile: string = contentStyles[key];
+                updateCSSInjection(values[key], ['styles/vars.css', 'content-styles/' + cssFile + '.css']);
+            }
+        }
+    });
+});

@@ -5,14 +5,14 @@ const saveButton = document.getElementById('save-button') as HTMLButtonElement |
 
 if (saveButton === null) throw new Error('Critical element missing: Save button');
 
-for (const categoryName in settingInputs) {
-    console.group(categoryName);
-    const category = settingInputs[categoryName];
-    for (const input of category) {
-        console.log(input);
-    }
-    console.groupEnd();
-}
+// for (const categoryName in settingInputs) {
+//     console.group(categoryName);
+//     const category = settingInputs[categoryName];
+//     for (const input of category) {
+//         console.log(input);
+//     }
+//     console.groupEnd();
+// }
 
 const loadSettings = async () => {
     console.log('Loading settings...');
@@ -33,7 +33,9 @@ const saveSettings = () => {
     }
     browser.storage.sync.set(items);
     console.log('Settings saved.');
+    port.postMessage({ action: 'update css', values: items });
 };
 
+const port = browser.runtime.connect({ name: 'background-port' });
 loadSettings();
 saveButton.addEventListener('click', saveSettings);

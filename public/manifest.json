@@ -33,7 +33,7 @@
     "web_accessible_resources": [
         {
             "resources": ["styles/vars.css"],
-            "matches": ["<all_urls>"]
+            "matches": ["*://developer.mozilla.org/*"]
         },
         {
             "resources": ["content-styles/developer.mozilla.css"],

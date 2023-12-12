@@ -1,7 +1,10 @@
 ---
 import Button from "@/components/input/Button.astro";
 import Toggle from "@/components/input/Toggle.astro";
-import { settings } from "@/scripts/settings";
+
+const settings: { [key: string]: string } = {
+    enableDeveloperMozilla: 'enable-developer_mozilla',
+};
 ---
 
 <html lang="en">
