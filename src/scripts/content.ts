@@ -1,6 +1,4 @@
-const settings = {
-    enableDeveloperMozilla: 'enable-developer_mozilla',
-};
+import { settings } from './settings.js';
 
 const toggleCSS = (tab: browser.tabs.Tab, file: string, value: boolean) => {
     if (tab.id !== undefined) {

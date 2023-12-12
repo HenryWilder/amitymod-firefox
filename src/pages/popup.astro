@@ -1,22 +1,23 @@
 ---
-import "@/styles/page-base.scss";
 import Button from "@/components/Button.astro";
 import Toggle from "@/components/Toggle.astro";
+import { settings } from "@/scripts/settings";
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8"/>
 		<link rel="icon" type="image" href="/icons/goop-512.png"/>
-		<title>Settings - Amity Mod</title>
+		<link rel="stylesheet" href="/styles/vars.css"/>
+		<link rel="stylesheet" href="/styles/basic.css"/>
 		<script type="module" src="/scripts/popup.js" defer></script>
+		<title>Settings - Amity Mod</title>
 	</head>
 	<body>
 		<h1>Amity Mod</h1>
-		<h2>Settings</h2>
 		<form>
-			<h3>Enable Mods</h3>
-			<Toggle type="checkbox" checked dataset={({ setting: 'enable-developer_mozilla' })}>developer.mozilla.org</Toggle>
+			<h2>Enable on</h2>
+			<Toggle type="checkbox" checked dataset={({ setting: settings.enableDeveloperMozilla })}>developer.mozilla.org</Toggle>
 
 			<Button id="save-button" kind="primary">Save</Button>
 		</form>
