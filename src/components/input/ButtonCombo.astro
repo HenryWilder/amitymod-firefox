@@ -25,9 +25,9 @@ interface Props extends InputProps {
 }
 
 const { id, label, kind = "static", items } = Astro.props;
-const isMulti: boolean = kind === "multi";
 ---
-<span class="button-combo" data-kind={kind}>
+<span class="button-combo" data-kind={kind} id={id}>
+    {label !== undefined && (<strong>{label}</strong>)}
     {items.map((item: Item) => (<Button kind={item.kind}>{item.content}</Button>))}
 </span>
 
