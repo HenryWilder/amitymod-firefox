@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build-typescript": "tsc -p src/scripts/tsconfig.json",
-    "build-sass": "sass --update --no-source-map src/styles/:dist/styles/ src/styles/content-styles/:dist/content-styles/",
-    "build": "astro check && astro build && npm run build-typescript && npm run build-sass",
+    "minify-js": "esbuild dist/scripts/*.js --minify --allow-overwrite --outdir=dist/scripts",
+    "build-typescript": "tsc -p src/scripts/tsconfig.json && npm run minify-js",
+    "build-sass": "sass --update --style=compressed --no-source-map src/styles/:dist/styles/ src/styles/content-styles/:dist/content-styles/",
+    "minify-json": "json-minify public/manifest.json > dist/manifest.json",
+    "build": "astro check && astro build && npm run build-typescript && npm run build-sass && npm run minify-json",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -17,5 +19,9 @@
     "astro": "^4.0.3",
     "sass": "^1.69.5",
     "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.9",
+    "json-minify": "^1.0.0"
   }
 }

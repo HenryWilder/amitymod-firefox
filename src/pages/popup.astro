@@ -1,6 +1,6 @@
 ---
-import Button from "@/components/Button.astro";
-import Toggle from "@/components/Toggle.astro";
+import Button from "@/components/input/Button.astro";
+import Toggle from "@/components/input/Toggle.astro";
 import { settings } from "@/scripts/settings";
 ---
 
@@ -9,6 +9,8 @@ import { settings } from "@/scripts/settings";
 		<meta charset="utf-8"/>
 		<link rel="icon" type="image" href="/icons/goop-512.png"/>
 		<link rel="stylesheet" href="/styles/vars.css"/>
+		<link rel="stylesheet" href="/styles/input.css"/>
+		<link rel="stylesheet" href="/styles/table-base.css"/>
 		<link rel="stylesheet" href="/styles/basic.css"/>
 		<script type="module" src="/scripts/popup.js" defer></script>
 		<title>Settings - Amity Mod</title>
@@ -17,7 +19,10 @@ import { settings } from "@/scripts/settings";
 		<h1>Amity Mod</h1>
 		<form>
 			<h2>Enable on</h2>
-			<Toggle type="checkbox" checked dataset={({ setting: settings.enableDeveloperMozilla })}>developer.mozilla.org</Toggle>
+
+			<Toggle type="checkbox" dataset={({ setting: settings.enableDeveloperMozilla })} checked>
+				developer.mozilla.org
+			</Toggle>
 
 			<Button id="save-button" kind="primary">Save</Button>
 		</form>
