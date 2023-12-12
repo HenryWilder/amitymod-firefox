@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "build-astro": "astro check && astro build",
     "minify-js": "esbuild dist/scripts/*.js --minify --allow-overwrite --outdir=dist/scripts",
     "build-typescript": "tsc -p src/scripts/tsconfig.json && npm run minify-js",
     "build-sass": "sass --update --style=compressed --no-source-map src/styles/:dist/styles/ src/styles/content-styles/:dist/content-styles/",
-    "minify-json": "json-minify public/manifest.json > dist/manifest.json",
-    "build": "astro check && astro build && npm run build-typescript && npm run build-sass && npm run minify-json",
+    "build-manifest": "json-minify public/manifest.json > dist/manifest.json",
+    "build": "npm run build-astro && npm run build-typescript && npm run build-sass && npm run build-manifest",
     "preview": "astro preview",
     "astro": "astro"
   },

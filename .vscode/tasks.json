@@ -2,22 +2,37 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Build Astro",
             "type": "npm",
-            "script": "build",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": [],
-            "label": "npm: build",
-            "detail": "astro check && astro build"
+            "script": "build-astro",
+            "group": "build"
         },
         {
-            "label": "compile current scss file",
-            "type": "shell",
-            "command": "sass",
-            "args": ["${file}"],
-            "problemMatcher": ["$node-sass"]
+            "label": "Build TypeScript",
+            "type": "npm",
+            "script": "build-typescript",
+            "problemMatcher": ["$tsc"],
+            "group": "build"
+        },
+        {
+            "label": "Build SASS",
+            "type": "npm",
+            "script": "build-sass",
+            "problemMatcher": ["$node-sass"],
+            "group": "build"
+        },
+        {
+            "label": "Build Manifest",
+            "type": "npm",
+            "script": "build-manifest",
+            "group": "build"
+        },
+        {
+            "label": "Build All",
+            "type": "npm",
+            "script": "build",
+            "problemMatcher": ["$tsc", "$node-sass"],
+            "group": "build"
         }
     ]
 }
