@@ -9,6 +9,12 @@
         "512": "icons/goop-512.png"
     },
 
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "amitymod@amysmilebatto.com"
+        }
+    },
+
     "permissions": [
         "activeTab",
         "tabs",

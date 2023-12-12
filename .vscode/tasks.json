@@ -2,26 +2,6 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build Astro",
-            "type": "npm",
-            "script": "build-astro",
-            "problemMatcher": {
-                "owner": "Astro",
-                "pattern": [
-                    {
-                        "regexp": "^([^\\s]+):(\\d+):(\\d+) - (error|warning) ([^\\s]+): (.*)$",
-                        "file": 1,
-                        "line": 2,
-                        "column": 3,
-                        "severity": 4,
-                        "code": 5,
-                        "message": 6
-                    }
-                ]
-            },
-            "group": "build"
-        },
-        {
             "label": "Build TypeScript",
             "type": "npm",
             "script": "build-typescript",
@@ -42,7 +22,7 @@
             "group": "build"
         },
         {
-            "label": "Build All",
+            "label": "Build Astro (all)",
             "type": "npm",
             "script": "build",
             "problemMatcher": [

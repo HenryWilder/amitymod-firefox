@@ -15,20 +15,24 @@ for (const categoryName in settingInputs) {
 }
 
 const loadSettings = async () => {
+    console.log('Loading settings...');
     const items = await browser.storage.sync.get();
     for (const inp of settingInputs.checkboxes) {
         const settingName: string = inp.dataset.setting!;
         inp.checked = items[settingName];
     }
+    console.log('Settings loaded.');
 };
 
 const saveSettings = () => {
+    console.log('Saving settings...');
     const items: { [key: string]: any } = {};
     for (const inp of settingInputs.checkboxes) {
         const settingName: string = inp.dataset.setting!;
         items[settingName] = inp.checked;
     }
     browser.storage.sync.set(items);
+    console.log('Settings saved.');
 };
 
 loadSettings();
