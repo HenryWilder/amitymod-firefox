@@ -3,5 +3,10 @@
         "matches": ["*://developer.mozilla.org/*"],
         "cssFile": "developer.mozilla",
         "displayName": "developer.mozilla.org"
+    },
+    "twitter": {
+        "matches": ["*://twitter.com/*", "*://x.com/*", "*://vxtwitter.com/*", "*://fxtwitter.com/*"],
+        "cssFile": "twitter",
+        "displayName": "twitter"
     }
 }

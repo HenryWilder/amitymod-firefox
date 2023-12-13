@@ -37,7 +37,9 @@ const genContentScript = (id: string, enable: boolean) => {
         return;
     }
     const { matches, cssFile } = CONTENT_STYLE_DATA[id];
-    const css = enable ? ['styles/vars.css', `content-styles/${cssFile}.css`] : ['styles/vars.css'];
+    const css = enable
+        ? ['styles/vars.css', 'styles/shared/theme-colors.css', 'styles/shared/monaco-colors.css', `content-styles/${cssFile}.css`]
+        : ['styles/vars.css'];
     const contentScript: browser.scripting._UpdateContentScriptsScripts = {
         id: id,
         matches: matches,
