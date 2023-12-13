@@ -20,6 +20,11 @@
         "scripting"
     ],
 
+    "host_permissions": [
+        "*://developer.mozilla.org/*",
+        "*://twitter.com/*"
+    ],
+
     "action": {
         "default_icon": {
             "512": "icons/goop-512.png"
