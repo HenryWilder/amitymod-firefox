@@ -16,10 +16,14 @@
     },
 
     "permissions": [
-        "activeTab",
         "tabs",
         "storage",
-        "scripting"
+        "scripting",
+        "webNavigation"
+    ],
+
+    "host_permissions": [
+        "*://developer.mozilla.org/*"
     ],
 
     "action": {
@@ -41,11 +45,8 @@
         }
     ],
 
-    "host_permissions": [
-        "*://developer.mozilla.org/*"
-    ],
-
     "background": {
-        "scripts": ["scripts/background.js"]
+        "scripts": ["scripts/background.js"],
+        "type": "module"
     }
 }

@@ -1,39 +1,63 @@
-const contentStyles: { [setting: string]: string } = {
+// Bindings from settings to CSS stylesheet names
+const contentStyles: { [key: string]: string } = {
     'enable-developer_mozilla': 'developer.mozilla',
 };
 
-const toggleCSS = (target: browser.scripting.InjectionTarget, files: string[], value: boolean) => {
-    const injection: browser.scripting.CSSInjection = { target, files };
-    if (value) {
-        browser.scripting.insertCSS(injection);
-    } else {
-        browser.scripting.removeCSS(injection);
+let storedSettings: { [key: string]: any };
+
+// Inject or remove the CSS from the provided tab, depending on the cached settings
+const updateInjection = async (tabId: number) => {
+    for (const key in storedSettings) {
+        if (!(key in contentStyles)) continue;
+        const enabled: boolean = storedSettings[key];
+        const cssFile: string = contentStyles[key];
+        const injection: browser.scripting.CSSInjection = { target: { tabId }, files: ['styles/vars.css', `content-styles/${cssFile}.css`] };
+        const { toggleCSS, actionName } = enabled
+            ? { toggleCSS: browser.scripting.insertCSS, actionName: 'insert' }
+            : { toggleCSS: browser.scripting.removeCSS, actionName: 'remove' };
+        (async () => {
+            await toggleCSS(injection).catch((err: any) => console.error(`failed to ${actionName} CSS: ${err}`));
+        })();
     }
 };
 
-const getTarget = async (): Promise<browser.scripting.InjectionTarget> => {
-    const tabs: browser.tabs.Tab[] = await browser.tabs.query({ active: true, currentWindow: true });
-    const activeTab: browser.tabs.Tab = tabs[0];
-    if (activeTab.id === undefined) throw new Error('Tab id is undefined');
-    return { tabId: activeTab.id };
+// Call `updateInjection` for all tabs we have permission for
+const updateInjection_AllTabs = async () => {
+    const tabs = await browser.tabs.query({ url: '*://developer.mozilla.org/*' });
+    for (const tab of tabs) {
+        updateInjection(tab.id!);
+    }
 };
 
-const updateCSSInjection = async (enabled: boolean, files: string[]): Promise<void> => {
-    const target = await getTarget();
-    toggleCSS(target, files, enabled);
+// Update service worker's cached copy of extension settings
+const refreshStoredSettings = async () => {
+    await browser.storage.sync.get().then((data) => (storedSettings = data));
 };
 
-const sharedCSS: string[] = ['styles/vars.css'];
+// Refresh stored settings and inject to all active tabs
+const updateSettings = async () => {
+    await refreshStoredSettings();
+    await updateInjection_AllTabs();
+};
 
+// On settings update
 browser.runtime.onConnect.addListener((port) => {
-    port.onMessage.addListener((msg: any) => {
-        const { action, values } = msg;
-        if (action === 'update css') {
-            console.debug(`[ WORKER ] Received message:`, msg);
-            for (const key in values) {
-                let cssFile: string = contentStyles[key];
-                updateCSSInjection(values[key], ['styles/vars.css', 'content-styles/' + cssFile + '.css']);
-            }
+    console.log('refreshing settings');
+    port.onMessage.addListener(async (msg: any) => {
+        const { action } = msg;
+        if (action === 'update settings') {
+            await updateSettings();
         }
     });
 });
+
+// On page commit
+browser.webNavigation.onCommitted.addListener((details) => {
+    console.log('web navigation committed');
+    if (details.frameId === 0) {
+        updateInjection(details.tabId).catch(console.error);
+    }
+});
+
+// First time
+browser.runtime.onInstalled.addListener(async () => await updateSettings());
