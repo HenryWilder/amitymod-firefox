@@ -1,63 +1,110 @@
-// Bindings from settings to CSS stylesheet names
-const contentStyles: { [key: string]: string } = {
-    'enable-developer_mozilla': 'developer.mozilla',
+export {};
+
+/**
+ * Mapping of settings to the associated content script info
+ */
+const CONTENT_STYLE_DATA: { [id: string]: { matches: string[]; cssFile: string } } = {
+    developer_mozilla: { matches: ['*://developer.mozilla.org/*'], cssFile: 'developer.mozilla' },
 };
 
+const isDefined = <T>(x: T | undefined): x is T => x !== undefined;
+
+/**
+ * Cached copy of settings
+ */
 let storedSettings: { [key: string]: any };
 
-// Inject or remove the CSS from the provided tab, depending on the cached settings
-const updateInjection = async (tabId: number) => {
-    for (const key in storedSettings) {
-        if (!(key in contentStyles)) continue;
-        const enabled: boolean = storedSettings[key];
-        const cssFile: string = contentStyles[key];
-        const injection: browser.scripting.CSSInjection = { target: { tabId }, files: ['styles/vars.css', `content-styles/${cssFile}.css`] };
-        const { toggleCSS, actionName } = enabled
-            ? { toggleCSS: browser.scripting.insertCSS, actionName: 'insert' }
-            : { toggleCSS: browser.scripting.removeCSS, actionName: 'remove' };
-        (async () => {
-            await toggleCSS(injection).catch((err: any) => console.error(`failed to ${actionName} CSS: ${err}`));
-        })();
-    }
-};
-
-// Call `updateInjection` for all tabs we have permission for
-const updateInjection_AllTabs = async () => {
-    const tabs = await browser.tabs.query({ url: '*://developer.mozilla.org/*' });
-    for (const tab of tabs) {
-        updateInjection(tab.id!);
-    }
-};
-
-// Update service worker's cached copy of extension settings
+/**
+ * Update service worker's cached copy of extension settings
+ */
 const refreshStoredSettings = async () => {
+    console.log('background: refreshing settings');
     await browser.storage.sync.get().then((data) => (storedSettings = data));
 };
+await refreshStoredSettings();
 
-// Refresh stored settings and inject to all active tabs
-const updateSettings = async () => {
-    await refreshStoredSettings();
-    await updateInjection_AllTabs();
+/**
+ * Generates an updated content script
+ * @param id The id of the content script to generate.
+ * @param enable Whether or not the content script should be enabled.
+ * @returns Object to place into an array being passed to {@linkcode browser.scripting.updateContentScripts|updateContentScripts}.
+ */
+const genContentScript = (id: string, enable: boolean) => {
+    if (!(id in CONTENT_STYLE_DATA)) {
+        console.warn(`background: id "${id}" does not exist in CONTENT_STYLE_DATA`);
+        return;
+    }
+    const { matches, cssFile } = CONTENT_STYLE_DATA[id];
+    const css = enable ? ['styles/vars.css', `content-styles/${cssFile}.css`] : ['styles/vars.css'];
+    const contentScript: browser.scripting._UpdateContentScriptsScripts = {
+        id: id,
+        matches: matches,
+        css: css,
+        runAt: 'document_start',
+        allFrames: true,
+    };
+    console.debug('background: generated script update:', contentScript);
+    return contentScript;
 };
 
-// On settings update
+// Initialize script
+await (async () => {
+    console.log('background: registering content scripts');
+    const registerList = Object.keys(CONTENT_STYLE_DATA)
+        .map((key) => genContentScript(key, true))
+        .filter(isDefined);
+    await browser.scripting.registerContentScripts(registerList);
+})();
+
+const debugContentScripts = () => {
+    browser.scripting.getRegisteredContentScripts().then((list) => console.debug('background: debugging content scripts:', list));
+};
+debugContentScripts();
+
+/**
+ * Updates for all items in {@linkcode storedSettings}
+ */
+const updateAllScripts = async () => {
+    console.log('background: updating content scripts');
+    try {
+        const updateList = Object.entries(storedSettings)
+            .map(([key, val]) => genContentScript(key, val))
+            .filter(isDefined);
+        await browser.scripting.updateContentScripts(updateList);
+    } catch (err: any) {
+        console.error('background:', err);
+    }
+};
+
+/**
+ * Refreshes stored settings updates all scripts
+ */
+const updateSettings = async () => {
+    console.log('background: updating settings');
+    try {
+        await refreshStoredSettings();
+        await updateAllScripts();
+    } catch (err: any) {
+        console.error('background:', err);
+    }
+    debugContentScripts();
+};
+
+/**
+ * First time
+ */
+browser.runtime.onInstalled.addListener(async () => await updateSettings());
+
+/**
+ * On settings update
+ */
 browser.runtime.onConnect.addListener((port) => {
-    console.log('refreshing settings');
+    console.log('background: "onConnect" fired');
     port.onMessage.addListener(async (msg: any) => {
-        const { action } = msg;
-        if (action === 'update settings') {
+        console.log('background: "onMessage" fired');
+        if (msg.action === 'update settings') {
+            console.log('background: "update settings" received');
             await updateSettings();
         }
     });
 });
-
-// On page commit
-browser.webNavigation.onCommitted.addListener((details) => {
-    console.log('web navigation committed');
-    if (details.frameId === 0) {
-        updateInjection(details.tabId).catch(console.error);
-    }
-});
-
-// First time
-browser.runtime.onInstalled.addListener(async () => await updateSettings());
