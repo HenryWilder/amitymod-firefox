@@ -1,0 +1,108 @@
+@function palette-no($n) {
+    $property-name: #{'--amity-palette-no-'+$n};
+    @return var($property-name);
+}
+
+$palette-no-0:   #{palette-no(  0)};
+$palette-no-4:   #{palette-no(  4)};
+$palette-no-8:   #{palette-no(  8)};
+$palette-no-12:  #{palette-no( 12)};
+$palette-no-16:  #{palette-no( 16)};
+$palette-no-20:  #{palette-no( 20)};
+$palette-no-24:  #{palette-no( 24)};
+$palette-no-32:  #{palette-no( 32)};
+$palette-no-40:  #{palette-no( 40)};
+$palette-no-59:  #{palette-no( 59)};
+$palette-no-77:  #{palette-no( 77)};
+$palette-no-80:  #{palette-no( 80)};
+$palette-no-88:  #{palette-no( 88)};
+$palette-no-90:  #{palette-no( 90)};
+$palette-no-92:  #{palette-no( 92)};
+$palette-no-96:  #{palette-no( 96)};
+$palette-no-98:  #{palette-no( 98)};
+$palette-no-100: #{palette-no(100)};
+
+$accent-color-rgb: var(--accent-color-rgb);
+
+@function palette-accent($n) {
+    @return var(#{'--amity-palette-accent-'+$n});
+}
+
+$palette-accent-8:   #{palette-accent(  8)};
+$palette-accent-16:  #{palette-accent( 16)};
+$palette-accent-24:  #{palette-accent( 24)};
+$palette-accent-30:  #{palette-accent( 30)};
+$palette-accent-60:  #{palette-accent( 60)};
+$palette-accent-80:  #{palette-accent( 80)};
+$palette-accent-100: #{palette-accent(100)};
+$palette-accent-120: #{palette-accent(120)};
+$palette-accent-140: #{palette-accent(140)};
+$palette-accent-160: #{palette-accent(160)};
+$palette-accent:      $palette-accent-100;
+
+@function theme-var($name, $suffix: null) {
+    $suffix-full: if($suffix !=null, #{'-'+$suffix}, '');
+    $property-name: #{'--amity-' + $name + '-color' + $suffix-full};
+    @return var($property-name);
+}
+
+$background-color:                      theme-var('background');
+$background-color-hsl:                  theme-var('background', 'hsl');
+
+$button-background-color:               theme-var('button-background');
+$button-background-color-hover:         theme-var('button-background', 'hover');
+$button-background-color-pressed:       theme-var('button-background', 'pressed');
+$button-border-color:                   theme-var('button-border');
+$button-disabled-background-color:      theme-var('button-disabled-background');
+$button-disabled-border-color:          theme-var('button-disabled-border');
+
+$controls-disabled-color:               theme-var('controls-disabled');
+$controls-primary-color:                theme-var('controls-primary');
+$controls-primary-focus-color:          theme-var('controls-primary-focus');
+$controls-primary-hover-color:          theme-var('controls-primary-hover');
+
+$focus-outline-color:                   theme-var('focus-outline');
+
+$input-background-color:                theme-var('input-background');
+$input-background-color-hover:          theme-var('input-background', 'hover');
+$input-background-color-pressed:        theme-var('input-background', 'pressed');
+$input-border-color:                    theme-var('input-border');
+
+$link-color:                            theme-var('link');
+$link-focus-background-color:           theme-var('link-focus-background');
+$link-hover-background-color:           theme-var('link-hover-background');
+
+$modal-background-color:                theme-var('modal-background');
+$modal-border-color:                    theme-var('modal-border');
+$modal-header-color:                    theme-var('modal-header');
+
+$primary-button-background-color:       theme-var('primary-button-background');
+$primary-button-background-color-hover: theme-var('primary-button-background', 'hover');
+$primary-button-border-color:           theme-var('primary-button-border');
+$primary-button-font-color:             theme-var('primary-button-font');
+
+$primary-color:                         theme-var('primary');
+$primary-color-rgb:                     theme-var('primary', 'rgb');
+
+$primary-color-l-30:                    theme-var('primary', 'l-30');
+$primary-color-l-60:                    theme-var('primary', 'l-60');
+$primary-color-l-80:                    theme-var('primary', 'l-80');
+$primary-color-l-120:                   theme-var('primary', 'l-120');
+$primary-color-l-140:                   theme-var('primary', 'l-140');
+$primary-color-opacity-25:              theme-var('primary', 'opacity-25');
+$primary-color-opacity-50:              theme-var('primary', 'opacity-50');
+$primary-color-opacity-75:              theme-var('primary', 'opacity-75');
+
+$secondary-background-color:            theme-var('secondary-background');
+$secondary-color:                       theme-var('secondary');
+$secondary-font-color:                  theme-var('secondary-font');
+
+$separator-color:                       theme-var('separator');
+
+$switch-color:                          theme-var('switch');
+$switch-gx-background-color:            theme-var('switch-gx-background');
+$switch-color-hover:                    theme-var('switch', 'hover');
+$switch-color-pressed:                  theme-var('switch', 'pressed');
+$switch-toggle-color:                   theme-var('switch-toggle');
+
+$unchecked-radio-color:                 theme-var('unchecked-radio');

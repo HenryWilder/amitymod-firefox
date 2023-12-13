@@ -1,0 +1,11 @@
+@use '../shared/helpers' as helpers;
+
+.tp-modal:has(>.tp-iframe-wrapper.tp-active>[id^="offer"][src^="https://buy.tinypass.com/checkout/offer/show"]) {
+    &, &+.tp-backdrop.tp-active {
+        @include helpers.hidden;
+    }
+}
+
+body.tp-modal-open {
+    overflow: visible !important;
+}

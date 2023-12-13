@@ -1,0 +1,230 @@
+@use '../shared/theme-vars' as theme;
+
+%amity-background {
+    background-color: var(--amity-background-color) !important;
+}
+
+@for $n from 1 through 10 {
+    %amity-background-#{$n} {
+        background-color: var(#{'--amity-background-color-' + $n}) !important;
+    }
+}
+
+@mixin amity-background($n) {
+    @extend %amity-background-#{$n}
+}
+
+%amity-accent-foreground {
+    color: var(--amity-accent-color) !important;
+}
+
+%amity-accent-background {
+    background-color: var(--amity-accent-color) !important;
+}
+
+body,
+[style*="background-color: rgb(255, 255, 255)"],
+[style*="background: none rgb(255, 255, 255)"],
+[style*="background-color: rgb(240, 243, 244)"] {
+    @extend %amity-background;
+}
+
+p,
+div,
+span {
+    color: white;
+}
+
+[style*="color: rgb(70, 112, 125)"] {
+    @extend %amity-accent-foreground;
+}
+
+div[role=heading]>div {
+    border-bottom: 1px solid var(--amity-background-color-4) !important;
+}
+
+#current-main-view,
+.mainview_item_page,
+[id^=itemContainer_alge],
+.tooltiptarget_bottomNavbar,
+.aleks_content_style {
+    @extend %amity-background;
+    color: white !important;
+}
+
+.ansed_root {
+    filter: brightness(100%);
+}
+
+[id^=ansed_answer] canvas {
+    filter: #{"invert()"};
+}
+
+[id^=ansed_answer]>.ansed_root {
+    border: 1px solid white !important;
+}
+
+.ansed_tree>span {
+    color: white !important;
+}
+
+#menubar_undefined_0_ansed>div {
+    background-color: var(--amity-background-color-1) !important;
+    border-color: var(--amity-background-color-5) !important;
+    box-shadow: none !important;
+}
+
+#menubar_undefined_0_ansed span {
+    background-color: transparent !important;
+}
+
+img {
+    filter: #{"invert()"} hue-rotate(calc(env(-amity-accent-color-h) * 1deg)) !important;
+}
+
+svg * {
+    fill: var(--amity-accent-color) !important;
+}
+
+%full-width {
+    max-width: 100% !important;
+}
+
+#welcomePage,
+#main_algo_body.main_algo_aleks>*,
+.tooltiptarget_banner {
+    @extend %full-width;
+}
+
+.tooltiptarget_bottomNavbar {
+
+    &,
+    &+div {
+        @extend %full-width;
+    }
+}
+
+.tooltiptarget_banner table {
+    @include amity-background(1);
+    border-bottom: 1px solid var(--amity-background-color-3) !important;
+}
+
+#current-main-view>div.hide_print {
+    right: 20px !important;
+}
+
+.mainview_item_page {
+    height: 100% !important;
+}
+
+.tooltiptarget_bottomNavbar {
+    border-top: 1px solid var(--amity-accent-color) !important;
+    bottom: 0 !important;
+}
+
+.tooltiptarget_bottomNavbar+div {
+    display: none !important;
+}
+
+button.primary {
+    @extend %amity-accent-background;
+}
+
+button.standard {
+    @include amity-background(3);
+    color: white !important;
+    border-color: var(--amity-background-color-5) !important;
+}
+
+#containerEditButton {
+    background-color: transparent !important;
+}
+
+button.secondary {
+    @include amity-background(2);
+    border-color: var(--amity-background-color-4) !important;
+    border-width: 1px !important;
+}
+
+button.tooltiptarget_toggle_carousel {
+    @include amity-background(2);
+    border-top-color: var(--amity-background-color-5) !important;
+}
+
+.removeiframe>div:last-child {
+    background-color: black !important;
+}
+
+table button>div {
+    @include amity-background(2);
+    border-color: var(--amity-background-color-5) !important;
+    border-width: 1px !important;
+}
+
+table button>div>* {
+    color: var(--amity-accent-color-3) !important;
+}
+
+table button>div>div:last-child {
+    @include amity-background(3);
+    border-color: var(--amity-background-color-5) !important;
+    bottom: 1px !important;
+    left: 1px !important;
+    right: 1px !important;
+    border-bottom-left-radius: 9px !important;
+    border-bottom-right-radius: 9px !important;
+}
+
+table button svg+div {
+    @extend %amity-accent-foreground;
+}
+
+a {
+    @extend %amity-accent-foreground;
+}
+
+.aleks-ui-Tooltip {
+    @include amity-background(2);
+    border-color: var(--amity-background-color-5) !important;
+    box-shadow: none !important;
+}
+
+.aleks-ui-Tooltip * {
+    @extend %amity-accent-foreground;
+}
+
+.aleks-ui-Tooltip .tipLocation-top>* {
+    border-bottom-color: var(--amity-background-color-5) !important;
+}
+
+.aleks-ui-Tooltip .tipLocation-top> :first-child {
+    top: 0 !important;
+}
+
+.aleks-ui-Tooltip .tipLocation-top> :last-child {
+    display: none !important;
+}
+
+div.body3 {
+    @extend %amity-accent-foreground;
+}
+
+#lightBulbTarget_carouselScrollable {
+    @include amity-background(1);
+}
+
+.tooltiptarget_carousel>button {
+    @extend %amity-accent-background;
+}
+
+.aleks-calculator__button--numpad {
+    @include amity-background(1);
+}
+
+.aleks-calculator__button--input {
+    @include amity-background(2);
+}
+
+.aleks-calculator__button-cell {
+    border: 1px solid transparent !important;
+}

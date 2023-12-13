@@ -1,0 +1,228 @@
+@use '../shared/monaco-vars' as monaco;
+
+.console,
+.signature-content.code-block-styling {
+    background-color: var(--vscode-panel-background) !important;
+    border-color: var(--vscode-panel-border) !important;
+
+    &>pre,
+    &>span {
+        color: var(--vscode-foreground) !important;
+    }
+}
+
+// background and text in same element
+zyinstructions>pre,
+textarea.console,
+.develop-output {
+    background-color: var(--vscode-panel-background) !important;
+    border: 1px solid var(--vscode-panel-border) !important;
+    color: var(--vscode-foreground) !important;
+}
+
+// the only unfortunate places we can't use custom font for some reason (it gets squished)
+.zyante-progression-modal-cover .code {
+    font-family: "Courier New", monospace !important;
+}
+
+.code,
+.code-number,
+.console,
+.construct {
+    font-family: Segoe WPC, Segoe UI, sans-serif !important;
+}
+
+/* Animations */
+.animation-canvas [style*="background-color: rgb(255, 255, 255)"] {
+    background-color: var(--vscode-editor-selectionBackground) !important;
+}
+
+.animation-canvas {
+    background-color: transparent !important;
+
+    @each $what in "color""border-color" {
+        [style*="#{$what}: rgb(51, 51, 51)"] {
+            #{$what}: var(--amity-background-color-10-3) !important;
+        }
+    }
+}
+
+/* Syntax highlighting */
+.code,
+.ace-editor,
+[style*="background-color: rgb(176, 214, 251)"] {
+    background-color: var(--vscode-editor-background) !important;
+    color: var(--mtk1-color) !important;
+    border: 1px solid var(--vscode-panel-border) !important;
+}
+
+code {
+    background-color: var(--vscode-editor-background) !important;
+    color: var(--mtk1-color) !important;
+    padding: 2px 0.5ch !important;
+    border-radius: 2px !important;
+}
+
+.ace-editor {
+    .ace_indent-guide {
+        background: none !important;
+        border-right: 1px solid var(--vscode-tree-inactiveIndentGuidesStroke) !important;
+        margin-right: -1px !important;
+    }
+
+    // cursor
+    .ace_cursor {
+        color: var(--vscode-editorCursor-foreground) !important;
+    }
+
+    // selection
+    .ace_selection {
+        background: var(--vscode-editor-selectionBackground) !important;
+    }
+
+    .ace_active-line {
+        background: transparent !important;
+        height: (17px - 4px) !important;
+        border-block: 2px solid var(--vscode-editor-lineHighlightBorder) !important;
+        opacity: 1.0 !important;
+    }
+
+    .ace_bracket.ace_br15 {
+        border-radius: 0 !important;
+        // margin: 1px 0 0 1px !important;
+        border-color: var(--vscode-editorBracketMatch-border) !important;
+        background-color: var(--vscode-editorBracketMatch-background) !important;
+    }
+}
+
+.ace-zyautumn .ace_gutter {
+    background: var(--vscode-editor-background) !important;
+
+    div.ace_gutter-cell {
+        color: var(--vscode-editorLineNumber-foreground) !important;
+
+        &.ace_gutter-active-line {
+            color: var(--vscode-editorLineNumber-activeForeground) !important;
+        }
+
+        &.gutter-highlight {
+            background-color: var(--amity-background-color-4) !important;
+        }
+
+        &:not(.gutter-highlight) {
+            background-color: transparent !important;
+        }
+    }
+}
+
+.highlight pre {
+    color: unset !important;
+}
+
+/* control */
+.highlight .cp,
+.ace_control {
+    color: var(--mtk18-color) !important;
+}
+
+/* other-constant */
+.highlight .cpf,
+.ace_constant.ace_other {
+    color: var(--mtk12-color) !important;
+    font-style: unset !important;
+}
+
+/* keywords */
+.highlight .k,
+.hljs-keyword,
+.ace_keyword:not(.ace_control),
+.ace_storage.ace_modifier {
+    color: var(--mtk6-color) !important;
+}
+
+/* builtin type */
+.highlight .kt,
+.hljs-type,
+.ace_storage.ace_type {
+    color: var(--mtk6-color) !important;
+}
+
+/* user-defined class */
+.highlight .nc,
+.hljs-title.class_ {
+    color: var(--mtk17-color) !important;
+}
+
+/* string literal */
+.highlight .s,
+.hljs-string,
+.ace_string {
+    color: var(--mtk12-color) !important;
+}
+
+/* number literal */
+.highlight .mi,
+.hljs-number,
+.ace_constant.ace_numeric {
+    color: var(--mtk7-color) !important;
+}
+
+/* punctuation */
+.highlight .p,
+.hljs-params,
+.ace_paren {
+    color: var(--mtk1-color) !important;
+}
+
+/* operator */
+.highlight .o,
+.ace_operator {
+    color: var(--mtk3-color) !important;
+}
+
+/* name */
+.highlight .n,
+.ace_identifier {
+    color: var(--mtk1-color) !important;
+}
+
+/* namespace */
+.highlight .nn {
+    color: var(--mtk17-color) !important;
+}
+
+// function
+.highlight .nf,
+.hljs-function>.hljs-title,
+.hljs-built_in,
+.ace-zyautumn span.ace_support.ace_function {
+    color: var(--mtk16-color) !important;
+}
+
+// comment
+.highlight .c1,
+.ace_comment {
+    color: var(--mtk5-color) !important;
+}
+
+.programming-code-output {
+    background-color: var(--amity-background-color) !important;
+
+    &.error {
+
+        // all but left
+        @each $side in 'top',
+        'bottom',
+        'right' {
+            #{'border-' + $side + '-color'}: var(--amity-background-color-4) !important;
+        }
+    }
+
+    &:not(.error) {
+        border-color: var(--amity-background-color-4) !important;
+    }
+}
+
+.string-diff.string-diff-highlight {
+    background-color: rgba(var(--amity-accent-color-rgb), 0.4) !important;
+}

@@ -1,0 +1,260 @@
+@use '../shared/theme-vars' as theme;
+@use 'zybooks-code';
+
+.route-container, body {
+    background-color: var(--amity-background-color) !important;
+}
+
+.toolbar, .top-toolbar {
+    background-color: var(--amity-background-color-1) !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid var(--amity-background-color-4) !important;
+}
+
+@mixin toolbar-text {
+    color: var(--amity-background-color-7) !important;
+}
+
+.right-buttons {
+    span, div {
+        @include toolbar-text;
+    }
+}
+
+.bread-crumbs {
+    a, .divider {
+        @include toolbar-text;
+    }
+}
+
+a:not(.next-section-link) {
+    color: var(--amity-accent-color) !important;
+
+    &:hover {
+        text-decoration: underline !important;
+    }
+
+    text-decoration: none !important;
+}
+
+.zb-icon {
+    .feedback-thumbs-pill>button>& {
+        color: white !important;
+    }
+
+    color: var(--amity-accent-color) !important;
+}
+
+.section-nav, .insert-content, .modify-section, .time-remaining-toast, .section-settings-menu, .unknown-content-resource, .zb-card {
+    background-color: var(--amity-background-color-1) !important;
+    border: 1px solid var(--amity-background-color-4) !important;
+    border-radius: 10px !important;
+    overflow: clip !important;
+}
+
+.zb-nav-menu {
+    background-color: var(--amity-background-color-1) !important;
+    border: 1px solid var(--amity-background-color-4) !important;
+
+    a,     button,     li {
+        color: var(--amity-background-color-10-3) !important;
+    }
+
+    // ! originally just for li test for issues
+    :hover {
+
+        &,         &>i {
+            color: var(--amity-accent-color) !important;
+        }
+    }
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--amity-accent-color) !important;
+}
+
+.section-announcement.primary .icon-container {
+    background-color: rgba(var(--amity-accent-color-rgb), 0.7) !important;
+}
+
+.zb-chevron.filled.orange, :not(.zb-card).primary, .raised, .button {
+    background-color: var(--amity-accent-color) !important;
+    color: white !important;
+
+    &.disabled {
+        background-color: rgba(var(--amity-accent-color-rgb), 0.7) !important;
+    }
+}
+
+.zb-chevron.filled.orange::before {
+    border-top-color: var(--amity-accent-color) !important;
+}
+
+%container-activity-part {
+    background-color: var(--amity-background-color-3) !important;
+}
+
+%container {
+    background-color: var(--amity-background-color-2) !important;
+    border: 1px solid var(--amity-background-color-5) !important;
+
+    @each $y in "type",     "title-bar",     "description" {
+        .activity-#{$y} {
+            @extend %container-activity-part;
+        }
+    }
+
+    .activity-type {
+        border-right-color: var(--amity-background-color-5) !important;
+    }
+}
+
+@each $x in "interactive-activity", "resource", "static" {
+    .#{$x}-container {
+        @extend %container;
+    }
+}
+
+.interactive-activity-container {
+    .activity-title-bar {
+        border-bottom: 1px solid var(--amity-background-color-5) !important;
+    }
+
+    &.participation .activity-title-bar {
+        border-left-color: var(--amity-accent-color) !important;
+    }
+}
+
+input, textarea {
+    border-color: var(--amity-background-color-5) !important;
+
+    &:checked {
+        background-color: var(--amity-background-color-5) !important;
+    }
+}
+
+.content-tools-app, .test-question, .unique, .zybook-section {
+    .term {
+        color: white !important;
+    }
+}
+
+.zb-feedback .expanded-feedback {
+    background-color: var(--amity-background-color-3) !important;
+    border-color: var(--amity-background-color-4) !important;
+}
+
+textarea {
+    background-color: var(--amity-background-color-2) !important;
+}
+
+.zb-nav-menu {
+    .chapter-labels, .section-labels {
+        .nav-item-label-lab {
+            color: white !important;
+        }
+    }
+}
+
+::placeholder, .zb-checkbox.label-present label {
+    color: var(--amity-background-color-5) !important;
+}
+
+.zb-feedback .expanded-feedback .feedback-header-row .feedback-header,
+.static-container .static-container-title,
+.zb-simple-expandable .toggle-button .title {
+    color: white !important;
+}
+
+.assignment-section-summary .assignment-section-header .assignment-section-title {
+    color: var(--amity-background-color-10) !important;
+}
+
+.progressionTool div.zyante-progression-status-bar {
+    $border-color: var(--amity-accent-color-1);
+    background-color: var(--amity-background-color) !important;
+    border-color: $border-color !important;
+
+    div {
+        &.highlighted {
+            outline-color: $border-color !important;
+        }
+
+        &.filled {
+            background-color: var(--amity-accent-color) !important;
+        }
+
+        &:not(:last-child) {
+            border-right-color: $border-color !important;
+        }
+    }
+}
+
+.activity-watermark {
+    color: var(--amity-background-color-10-2) !important;
+}
+
+:not(.primary) {
+
+    &>div,     &>p,     &>span {
+        color: var(--amity-background-color-10-3);
+    }
+}
+
+%header {
+    color: var(--amity-background-color-10-3) !important;
+}
+
+@for $i from 1 through 6 {
+    h#{$i} {
+        @extend %header;
+    }
+}
+
+table {
+    background: var(--amity-background-color) !important;
+
+    th {
+        background-color: var(--amity-background-color-1) !important;
+    }
+
+    &,     td,     th {
+        border-color: var(--amity-background-color-4) !important;
+    }
+}
+
+.inline-editor-header, .ember-basic-dropdown.zb-menu>div, .ember-basic-dropdown.zb-menu li>button {
+    background-color: var(--amity-background-color-3) !important;
+}
+
+.zb-segmented-control>button.zb-button.secondary {
+    border-color: var(--amity-accent-color) !important;
+
+    &.selected {
+        background-color: var(--amity-accent-color) !important;
+
+        &>span {
+            color: white !important;
+        }
+    }
+
+    &:not(.selected) {
+        background-color: var(--amity-background-color) !important;
+
+        &>span {
+            color: var(--amity-accent-color) !important;
+        }
+    }
+}
+
+.ember-basic-dropdown.zb-menu li>button, .lab-score {
+    color: var(--amity-accent-color) !important;
+}
+
+.program {
+    background-color: var(--amity-background-color-4) !important;
+}
+
+.develop-inputs textarea {
+    color: white !important;
+}

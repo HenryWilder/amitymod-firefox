@@ -1,5 +1,5 @@
-@use '../var-helpers.scss' as vars;
+@use '../shared/theme-vars' as theme;
 
 :root {
-    --background-primary: #{vars.$background-color} !important;
+    --background-primary: #{theme.$background-color} !important;
 }

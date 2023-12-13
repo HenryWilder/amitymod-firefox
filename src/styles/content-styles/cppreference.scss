@@ -1,0 +1,233 @@
+@use '../shared/helpers' as helpers;
+@use '../shared/theme-vars' as theme;
+@use 'cppreference-code';
+
+$page-background-color:             theme.$palette-no-100;
+$container-background-color:        var(--amity-background-color-1);
+$container-background1-color:       var(--amity-background-color-2);
+$container-border-color:            var(--amity-background-color-4);
+$link-color:                        var(--amity-accent-color);
+$link-visited-color:                var(--amity-background-color-10-2);
+$selflink-color:                    var(--amity-accent-color-2);
+
+:root {
+    --logo-color: invert(rgb(255, 255, 255));
+    --normal-text-color: invert(rgb(255, 255, 255));
+    --normal-code-color: invert(rgb(245, 245, 245));
+    --punctuation-color: invert(rgb(204, 204, 204));
+
+    @media (prefers-color-scheme: dark) {
+        --logo-color: rgb(255, 255, 255);
+        --normal-text-color: rgb(255, 255, 255);
+        --normal-code-color: rgb(245, 245, 245);
+        --punctuation-color: rgb(204, 204, 204);
+    }
+}
+
+// Adds a standard border on the specified side
+@mixin force-container-border-on($side) {
+    #{'border-'+$side}: 1px solid $container-border-color !important;
+}
+
+// Adds a standard border to all sides
+@mixin force-container-border {
+    border: 1px solid $container-border-color !important;
+}
+
+// Colors the border if it exists
+@mixin container-border {
+    border-color: $container-border-color !important;
+}
+
+@mixin container-background {
+    background: $container-background-color !important;
+}
+
+@mixin container-background-1 {
+    background: $container-background1-color !important;
+}
+
+@mixin container-block {
+    @include container-background;
+    @include container-border;
+}
+
+@mixin container-block-1 {
+    @include container-background-1;
+    @include container-border;
+}
+
+// page background
+body,
+#cpp-content-base,
+.t-navbar-menu>div,
+.mbox-text {
+    background-color: $page-background-color !important;
+}
+
+@media screen {
+
+    #mw-head>div>div,
+    #footer,
+    #content {
+        width: 1500px !important;
+    }
+}
+
+// basic text areas
+%basic-text {
+    color: var(--normal-text-color) !important;
+}
+
+p, li, td, th, div {
+    @extend %basic-text;
+}
+
+@for $i from 1 through 6 {
+    h#{$i} {
+        @extend %basic-text;
+    }
+}
+
+ul {
+    list-style: {
+        type: disc !important;
+        image: none !important;
+    }
+
+    li::marker {
+        color: $link-color !important;
+    }
+}
+
+// header and footer
+#cpp-footer-base {
+    @include container-block;
+}
+
+// #cpp-head-search, #cpp-head-personal, #ca-edit, #footer-icons {
+//     @include helpers.$hidden;
+// }
+
+#mw-head {
+    @include force-container-border-on("bottom");
+
+    div {
+        @include container-block;
+    }
+
+    li {
+        &:not(.selected)>span {
+            @include container-block;
+        }
+
+        &.selected>span {
+            @include container-block-1;
+        }
+    }
+
+    &>#cpp-head-second-base a {
+        font-weight: bold;
+    }
+
+    ul>li {
+        @include force-container-border-on("right");
+
+        &:first-child {
+            @include force-container-border-on("left");
+        }
+    }
+
+    // logo
+    h5>a {
+        color: var(--logo-color) !important;
+    }
+}
+
+.t-navbar {
+    &>div {
+        @include force-container-border-on("bottom");
+    }
+
+    // I'm replacing the angled slashes with a more standardized rectangle.
+    // I know it's less charming, but I can't consistently recolor the images...
+    &>div.t-navbar-sep {
+        @include helpers.hidden;
+    }
+
+    &>div.t-navbar-head {
+        @include force-container-border-on("right");
+
+        &:nth-child(2) {
+            @include force-container-border-on("left");
+        }
+    }
+}
+
+// tables and code examples
+.mw-geshi,
+span.t-c,
+div.t-member,
+.t-inherited {
+    @include container-block;
+}
+
+table {
+
+    &.t-rev,
+    &.t-rev-begin,
+    &.wikitable {
+
+        &,
+        td {
+            @include container-block;
+        }
+    }
+
+    // Not sure why this is separate...
+    &.mainpagetable td {
+        @include container-block;
+    }
+}
+
+h1,
+td {
+    @include container-border;
+}
+
+table {
+
+    &.t-dsc,
+    &.t-dsc-begin,
+    &.t-dcl-begin {
+
+        &,
+        td {
+            @include container-border;
+        }
+    }
+
+    &.wikitable th {
+        @include container-block-1;
+    }
+}
+
+a {
+    &:not(:visited) {
+        color: $link-color !important;
+    }
+
+    &:visited {
+        color: $link-visited-color !important;
+    }
+}
+
+// selflink
+strong.selflink {
+    color: $selflink-color !important;
+}
+
+// "Run this code" buttons
+.coliru-btn {
+    background: $link-color !important;
+}

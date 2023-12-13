@@ -1,0 +1,174 @@
+@use '../shared/helpers' as helpers;
+@use '../shared/theme-vars' as theme;
+
+body, .r-kemksi {
+    background: theme.$background-color !important;
+}
+
+.r-5zmot {
+    background-color: hsla(theme.$background-color-hsl, 0.65) !important;
+}
+
+.r-cqee49 {
+    color: var(--amity-background-color) !important;
+}
+
+.r-g2wdr4 {
+    background: theme.$secondary-background-color !important;
+}
+
+.r-z32n2g, .r-gu4em3 {
+    background: theme.$button-border-color !important;
+}
+
+.r-qo02w8 {
+    box-shadow: rgba(theme.$accent-color-rgb, 0.2) 0 0 15px, rgba(theme.$accent-color-rgb, 0.15) 0 0 3px 1px !important;
+}
+
+.r-1tbvlxk {
+    filter: drop-shadow(rgba(theme.$accent-color-rgb, 0.2) 1px -1px 1px) !important;
+}
+
+.r-19od9ir {
+    box-shadow: rgba(theme.$accent-color-rgb, 0.2) 0 2px 12px !important;
+}
+
+.r-l5o3uw, [style*="background-color: rgb(29, 155, 240)"] {
+    &:active {
+        background-color: theme.$button-background-color-pressed !important;
+    }
+
+    background-color: theme.$primary-button-background-color !important;
+}
+
+/* tweet button hovered */
+.r-1vtznih {
+    background-color: theme.$primary-button-background-color-hover !important;
+}
+
+.r-1cvl2hr, [style*="color: rgb(239, 243, 244)"], %accent-text {
+    color: theme.$primary-color !important;
+}
+
+nav .r-1nao33i, h1 a[href="/home"] svg, [style*="color: rgb(29, 155, 240)"] {
+    @extend %accent-text;
+
+    path {
+        fill: theme.$primary-color !important;
+    }
+}
+
+.r-1eltapf {
+    background-color: rgba(var(--amity-background-color-10-rgb), 0.14) !important;
+}
+
+.r-1pbtemp {
+    border-right-color: theme.$primary-color !important;
+}
+
+.r-1roi411, .r-1kqtdi0, .r-1kqtdi0, .r-14wv3jr {
+    border-color: theme.$separator-color !important;
+}
+
+.r-1igl3o0 {
+    border-bottom-color: theme.$separator-color !important;
+}
+
+.r-1bwzh9t, .css-1qaijid[style*="color: rgb(113, 118, 123)"], .public-DraftEditorPlaceholder-inner, ::placeholder {
+    color: var(--amity-background-color-7) !important;
+}
+
+[style*="border-color: rgb(83, 100, 113)"], [style*="border-color: rgb(29, 155, 240)"] {
+    border-color: theme.$primary-color !important;
+}
+
+.r-pjtv4k {
+    background-color: rgba(var(--amity-accent-color-rgb), 0.1) !important;
+}
+
+.r-2sztyj {
+    border-top-color: var(--amity-background-color-3) !important;
+}
+
+.r-1bnu78o {
+    // @include amity-background(4);
+}
+
+svg [stroke="#2F3336"] {
+    stroke: var(--amity-background-color-3) !important;
+}
+
+.r-1hdo0pc, .r-1peqgm7 {
+    background-color: theme.$secondary-background-color !important; // 0.1 opacity
+}
+
+.r-r18ze4 {
+    background-color: theme.$secondary-background-color !important; // 0.2 opacity
+}
+
+.r-qazpri {
+    color: var(--amity-background-color-5) !important;
+}
+
+.r-eff69c {
+    background: theme.$secondary-background-color !important;
+    // @include amity-background(8);
+}
+
+.r-yuvema {
+    background: theme.$secondary-background-color !important;
+    // @include amity-background(7);
+}
+
+.r-vhj8yc {
+    border-color: theme.$primary-color !important;
+}
+
+::-webkit-scrollbar {
+    background: theme.$background-color !important;
+
+    &#{'-thumb'} {
+        background: theme.$secondary-background-color !important;
+
+        &:hover {
+            background: theme.$button-border-color !important;
+        }
+    }
+}
+
+$tracer-color: magenta;
+
+/* tracer */
+.r-eok2q2, .r-1rfi0ky {
+    background-color: $tracer-color !important;
+}
+
+/* tracer */
+.r-nf76sl {
+    caret-color: $tracer-color !important;
+}
+
+/* tracer */
+.r-9cip40 {
+    box-shadow: 0 0 0 1px $tracer-color !important;
+}
+
+/* tracer */
+.r-j0yx7z {
+    border-left-color: $tracer-color !important;
+}
+
+/* tracer */
+.r-1ccsd61, .r-1ets6dv {
+    border-color: $tracer-color !important;
+}
+
+/* Loading spinner */
+div[aria-label^="Loading"][role="progressbar"] svg>circle, .css-175oi2r.r-1awozwy.r-16y2uox.r-1777fci.r-1e081e0.r-tvv088>.css-175oi2r.r-1awozwy.r-1777fci>.css-175oi2r.r-17bb2tj.r-1muvv40.r-127358a.r-1ldzwu0>svg>circle, svg [stroke="#1D9BF0"] {
+    stroke: theme.$primary-color !important;
+}
+
+/* mr. gorbachev, delete this wack ass button now. */
+a[href="/i/verified-choose"], :has(>a[href$="/highlights"]) {
+    @include helpers.hidden;
+}

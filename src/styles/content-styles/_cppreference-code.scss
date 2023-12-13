@@ -1,0 +1,87 @@
+@use '../shared/monaco-vars' as monaco;
+
+%preprocessor {
+    color: monaco.$syntax-default-color !important;
+}
+
+/* things like [static] */
+span.t-cmark,
+.t-spar {
+    @extend %preprocessor;
+}
+
+/* parameter */
+tr.t-par>td:first-child {
+    color: monaco.$syntax-local-variable-color !important;
+}
+
+/* code section default text color */
+pre[class^=de] {
+    color: var(--normal-code-color) !important;
+}
+
+/* keywords */
+.kw2,
+.kw4 {
+    color: monaco.$syntax-keyword-color !important;
+}
+
+/* control keywords */
+.kw1 {
+    color: monaco.$syntax-keyword-control-color !important;
+}
+
+%punctuation {
+    color: monaco.$syntax-punctuation-color !important;
+}
+
+/* brackets/braces */
+.br0 {
+    @extend %punctuation;
+}
+
+/* system */
+@for $i from 1 through 4 {
+    .sy#{$i} {
+        @extend %punctuation;
+    }
+}
+
+/* strings */
+.st0 {
+    color: monaco.$syntax-literal-string-color !important;
+}
+
+%escape-sequence {
+    color: monaco.$syntax-escape-sequence-color !important;
+}
+
+/* escape sequence */
+@for $i from 1 through 5 {
+    .es#{$i} {
+        @extend %escape-sequence;
+    }
+}
+
+/* comments & revisions */
+.co1,
+.t-mark,
+.t-mark-rev {
+    color: monaco.$syntax-comment-color !important;
+}
+
+%numeric-literal {
+    color: monaco.$syntax-literal-numeric-color !important;
+}
+
+/* number literal */
+@for $i from 0 through 17 {
+    .nu#{$i} {
+        @extend %numeric-literal;
+    }
+}
+
+/* preprocessor */
+.co2 {
+    @extend %preprocessor;
+}

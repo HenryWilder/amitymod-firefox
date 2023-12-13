@@ -1,0 +1,25 @@
+$syntax-default-color: var(--mtk1-color);
+$syntax-punctuation-color: var(--mtk3-color);
+$syntax-comment-color: var(--mtk5-color);
+$syntax-keyword-color: var(--mtk6-color);
+$syntax-literal-numeric-color: var(--mtk7-color);
+$syntax-literal-string-color: var(--mtk12-color);
+$syntax-escape-sequence-color: var(--mtk9-color);
+$syntax-local-variable-color: var(--mtk10-color);
+$syntax-function-color: var(--mtk16-color);
+$syntax-userType-color: var(--mtk17-color);
+$syntax-keyword-control-color: var(--mtk18-color);
+$syntax-constant-color: var(--mtk19-color);
+
+$vscode-panel-background: var(--vscode-panel-background);
+$vscode-panel-border: var(--vscode-panel-border);
+$vscode-foreground: var(--vscode-foreground);
+$vscode-editor-selectionBackground: var(--vscode-editor-selectionBackground);
+$vscode-editor-background: var(--vscode-editor-background);
+$vscode-tree-inactiveIndentGuidesStroke: var(--vscode-tree-inactiveIndentGuidesStroke);
+$vscode-editorCursor-foreground: var(--vscode-editorCursor-foreground);
+$vscode-editor-lineHighlightBorder: var(--vscode-editor-lineHighlightBorder);
+$vscode-editorBracketMatch-border: var(--vscode-editorBracketMatch-border);
+$vscode-editorBracketMatch-background: var(--vscode-editorBracketMatch-background);
+$vscode-editorLineNumber-foreground: var(--vscode-editorLineNumber-foreground);
+$vscode-editorLineNumber-activeForeground: var(--vscode-editorLineNumber-activeForeground);

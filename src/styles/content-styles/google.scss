@@ -1,0 +1,109 @@
+@use '../shared/theme-vars' as theme;
+
+:root {
+    --uv-styles-color-surface:                     var(--amity-background-color)   !important;
+    --lens-background-color-primary:               var(--amity-background-color)   !important;
+    --lens-background-color-secondary:             var(--amity-background-color-1) !important;
+    --lens-background-image-fill-color:            var(--amity-background-color-1) !important;
+    --lens-background-image-fill-with-scrim-color: var(--amity-background-color-2) !important;
+    --lens-text-color-secondary:                   var(--amity-background-color-5) !important;
+    --lens-link-color-primary:                     var(--amity-accent-color)       !important;
+    --lens-link-color-tertiary:                    var(--amity-accent-color)       !important;
+}
+
+body, .appbar, .sfbg, .rsGxI.Ww4FFb, .Ww4FFb, .zRQJhd, .wH6SXe {
+    background: var(--amity-background-color) !important;
+}
+
+.appbar, .xtSCL {
+    border-top-color: var(--amity-background-color-4) !important;
+}
+
+/* Dividers */
+.rKnmn, .RzdJxc, .iRPzcb, .Hwkikb.WY0eLb, .ACRAdd, .MsCHpb {
+    border-color: var(--amity-background-color-3) !important;
+}
+
+.zgAlFc {
+    color: var(--amity-accent-color) !important;
+}
+
+.minidiv .sfbg {
+    box-shadow: none !important;
+    border-bottom: 1px solid var(--amity-background-color-4) !important;
+}
+
+/* Search bar */
+.RNNXgb, .aajZCb {
+    background-color: var(--amity-background-color-2) !important;
+}
+
+.aajZCb {
+    box-shadow: 0 4px 6px 0 rgba(var(--amity-accent-color-rgb), 0.1) !important;
+}
+
+.emcav .RNNXgb, .RNNXgb:hover {
+    box-shadow: 0 4px 12px rgba(var(--amity-accent-color-rgb), 0.1) !important;
+}
+
+.minidiv .RNNXgb {
+    border-color: var(--amity-background-color-4) !important;
+}
+
+.GKS7s {
+    background-color: var(--amity-background-color-2) !important;
+    border: 1px solid var(--amity-background-color-4) !important;
+}
+
+.GKS7s:hover {
+    background-color: var(--amity-background-color-3) !important;
+}
+
+.S8ee5, [style*="background:#2E3038"], [style*="background:#3C3E49"] {
+    background: var(--amity-background-color-2) !important;
+    background-color: var(--amity-background-color-2) !important;
+}
+
+.S8ee5:hover {
+    background: var(--amity-background-color-3) !important;
+}
+
+.kQdGHd,
+.GNJvt {
+    color: var(--amity-background-color-7) !important;
+}
+
+/* see more */
+hr.rhHIGd, hr.KXbwLb, .akqY6, .WZH4jc .VknLRd .GNJvt, .ZFiwCf, .IDFSOe {
+    background-color: var(--amity-background-color-3) !important;
+}
+
+.WZH4jc .VknLRd:hover .GNJvt {
+    background-color: var(--amity-background-color-4) !important;
+}
+
+.KFFQ0c .YfftMc span {
+    color: var(--amity-background-color-4) !important;
+}
+
+.f6F9Be {
+    background: var(--amity-background-color-1) !important;
+    border-top: 1px solid var(--amity-background-color-3) !important;
+}
+
+.dG2XIf {
+    background: transparent !important;
+}
+
+.MR2UAc {
+    background-color: var(--amity-background-color-2) !important;
+    border-color: var(--amity-background-color-5) !important;
+
+    &:hover {
+        background-color: var(--amity-background-color-3) !important;
+    }
+}
+
+div.pxhZNb {
+    background-color: var(--amity-background-color-5) !important;
+}

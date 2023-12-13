@@ -1,0 +1,76 @@
+:root {
+    --mtk1-color: #3b3b3b;
+    --mtk2-color: #ffffff;
+    --mtk3-color: #000000;
+    --mtk4-color: #000080;
+    --mtk5-color: #008000;
+    --mtk6-color: #0000ff;
+    --mtk7-color: #098658;
+    --mtk8-color: #811f3f;
+    --mtk9-color: #800000;
+    --mtk10-color: #e50000;
+    --mtk11-color: #cd3131;
+    --mtk12-color: #a31515;
+    --mtk13-color: #0451a5;
+    --mtk14-color: #795e26;
+    --mtk15-color: #267f99;
+    --mtk16-color: #af00db;
+    --mtk17-color: #001080;
+    --mtk18-color: #0070c1;
+    --mtk19-color: #d16969;
+    --mtk20-color: #ee0000;
+    --mtk21-color: #316bcd;
+    --mtk22-color: #cd9731;
+    --mtk23-color: #800080;
+
+    --vscode-panel-background: #f8f8f8;
+    --vscode-panel-border: #e5e5e5;
+    --vscode-foreground: #3b3b3b;
+    --vscode-editor-selectionBackground: #add6ff;
+    --vscode-editor-background: #ffffff;
+    --vscode-tree-inactiveIndentGuidesStroke: rgba(169, 169, 169, 0.4);
+    --vscode-editorCursor-foreground: #000000;
+    --vscode-editor-lineHighlightBorder: #eeeeee;
+    --vscode-editorBracketMatch-border: #b9b9b9;
+    --vscode-editorBracketMatch-background: rgba(0, 100, 0, 0.1);
+    --vscode-editorLineNumber-foreground: #6e7681;
+    --vscode-editorLineNumber-activeForeground: #171184;
+
+    @media (prefers-color-scheme: dark) {
+        --mtk1-color: #cccccc;
+        --mtk2-color: #1f1f1f;
+        --mtk3-color: #d4d4d4;
+        --mtk4-color: #000080;
+        --mtk5-color: #6a9955;
+        --mtk6-color: #569cd6;
+        --mtk7-color: #b5cea8;
+        --mtk8-color: #646695;
+        --mtk9-color: #d7ba7d;
+        --mtk10-color: #9cdcfe;
+        --mtk11-color: #f44747;
+        --mtk12-color: #ce9178;
+        --mtk13-color: #6796e6;
+        --mtk14-color: #808080;
+        --mtk15-color: #d16969;
+        --mtk16-color: #dcdcaa;
+        --mtk17-color: #4ec9b0;
+        --mtk18-color: #c586c0;
+        --mtk19-color: #4fc1ff;
+        --mtk20-color: #c8c8c8;
+        --mtk21-color: #cd9731;
+        --mtk22-color: #b267e6;
+
+        --vscode-panel-background: #181818;
+        --vscode-panel-border: #2b2b2b;
+        --vscode-foreground: #cccccc;
+        --vscode-editor-selectionBackground: #264f78;
+        --vscode-editor-background: #1f1f1f;
+        --vscode-tree-inactiveIndentGuidesStroke: rgba(88, 88, 88, 0.4);
+        --vscode-editorCursor-foreground: #aeafad;
+        --vscode-editor-lineHighlightBorder: #282828;
+        --vscode-editorBracketMatch-border: #888888;
+        --vscode-editorBracketMatch-background: rgba(0, 100, 0, 0.1);
+        --vscode-editorLineNumber-foreground: #6e7681;
+        --vscode-editorLineNumber-activeForeground: #cccccc;
+    }
+}

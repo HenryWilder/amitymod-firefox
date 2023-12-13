@@ -1,0 +1,172 @@
+@use 'sass:math';
+
+:root {
+    --amity-background-h: 256;
+    --amity-background-s: 23%;
+    --amity-background-l: 88%;
+
+    @media (prefers-color-scheme: dark) {
+        --amity-background-h: 256;
+        --amity-background-s: 23%;
+        --amity-background-l: 16%;
+    }
+
+    $background-h: var(--amity-background-h);
+    $background-s: var(--amity-background-s);
+    $background-l: var(--amity-background-l);
+
+    @each $n in (0, 4, 8, 12, 16, 20, 24, 32, 40, 59, 77, 80, 88, 90, 92, 96, 98, 100) {
+        #{'--amity-palette-no-' + $n + '-values-hsl'}: #{$background-h} #{$background-s} #{$n+'%'};
+        #{'--amity-palette-no-' + $n}: hsl(var(#{'--amity-palette-no-'+$n+'-values-hsl'}));
+    }
+
+    --amity-accent-color-h: 264;
+    --amity-accent-color-s: 94%;
+    --amity-accent-color-l: 53%;
+
+    $accent-h: var(--amity-accent-color-h);
+    $accent-s: var(--amity-accent-color-s);
+    $accent-l: var(--amity-accent-color-l);
+    --amity-accent-color-hsl: #{$accent-h $accent-s $accent-l};
+
+    @function scale($comp, $n) {
+        $scalar: math.div($n, 100);
+
+        @if 100 < $n {
+            @return calc($comp + (255 - $comp) * ($scalar - 1));
+        }
+
+        @else if $n < 100 {
+            @return calc($comp * $scalar);
+        }
+
+        @else {
+            @return $comp;
+        }
+    }
+
+    @function scale-hsl($h, $s, $l, $n) {
+        @return $h $s scale($l, $n);
+    }
+
+    @each $n in (8, 16, 24, 30, 60, 80, 100, 120, 140, 160) {
+        $var-name: '--amity-palette-accent-' + $n;
+        $var-name-hsl: $var-name + '-values-hsl';
+        #{$var-name-hsl}: #{scale-hsl($accent-h, $accent-s, $accent-l, $n)};
+        #{$var-name}: hsl(var(#{$var-name-hsl}));
+    }
+
+    --amity-palette-accent: var(--amity-palette-accent-100);
+
+    /* Light theme by default */
+
+    --amity-background-color:                      var(--amity-palette-no-96);
+    --amity-background-color-hsl:                  var(--amity-palette-no-96-values-hsl);
+
+    --amity-button-background-color:               var(--amity-palette-no-90);
+    --amity-button-background-color-hover:         var(--amity-palette-no-80);
+    --amity-button-background-color-pressed:       var(--amity-palette-no-40);
+    --amity-button-border-color:                   var(--amity-palette-no-80);
+    --amity-button-disabled-background-color:      var(--amity-palette-no-90);
+    --amity-button-disabled-border-color:          var(--amity-palette-no-80);
+
+    --amity-controls-disabled-color:               var(--amity-palette-no-80);
+    --amity-controls-primary-color:                var(--amity-palette-accent);
+    --amity-controls-primary-focus-color:          var(--amity-palette-accent);
+    --amity-controls-primary-hover-color:          var(--amity-palette-accent);
+
+    --amity-focus-outline-color:                   var(--amity-palette-accent-60);
+
+    --amity-input-background-color:                var(--amity-palette-no-88);
+    --amity-input-background-color-hover:          var(--amity-palette-no-90);
+    --amity-input-background-color-pressed:        var(--amity-palette-no-90);
+    --amity-input-border-color:                    var(--amity-palette-no-80);
+
+    --amity-link-color:                            var(--amity-palette-accent);
+    --amity-link-focus-background-color:           rgb(var(--amity-palette-accent-values-rgb) / 0.5);
+    --amity-link-hover-background-color:           rgb(var(--amity-palette-accent-values-rgb) / 0.25);
+
+    --amity-modal-background-color:                var(--amity-palette-no-88);
+    --amity-modal-border-color:                    var(--amity-palette-accent-60);
+    --amity-modal-header-color:                    var(--amity-palette-no-88);
+
+    --amity-primary-button-background-color:       var(--amity-palette-accent);
+    --amity-primary-button-background-color-hover: var(--amity-palette-accent-120);
+    --amity-primary-button-border-color:           var(--amity-secondary-color);
+    --amity-primary-button-font-color:             var(--amity-gx-font-color);
+
+    --amity-primary-color:                         var(--amity-palette-accent);
+    --amity-primary-color-rgb:                     var(--amity-palette-accent-values-rgb);
+
+    @each $n in (30, 60, 80, 120, 140) {
+        --amity-primary-color-#{$n}: var(--amity-palette-accent-#{$n});
+    }
+
+    @each $n in (25, 50, 75) {
+        $amnt: math.div($n, 100);
+        --amity-primary-color-opacity-#{$n}: rgb(var(--amity-palette-accent-values-rgb) / #{$amnt});
+    }
+
+    --amity-secondary-background-color: var(--amity-palette-no-98);
+    --amity-secondary-color:            var(--amity-palette-accent-60);
+    --amity-secondary-font-color:       var(--amity-palette-no-24);
+
+    --amity-separator-color:            var(--amity-palette-no-80)
+    --amity-switch-color:               var(--amity-palette-no-80);
+    --amity-switch-gx-background-color: var(--amity-palette-no-80);
+    --amity-switch-color-hover:         var(--amity-font-color);
+    --amity-switch-color-pressed:       var(--amity-palette-no-24);
+    --amity-switch-toggle-color:        var(--amity-palette-no-100);
+
+    --amity-unchecked-radio-color:      var(--amity-palette-no-24);
+
+    @media (prefers-color-scheme: dark) {
+        --amity-background-color:                      var(--amity-palette-no-8);
+
+        --amity-button-background-color:               var(--amity-palette-no-20);
+        --amity-button-background-color-hover:         var(--amity-palette-no-32);
+        --amity-button-background-color-pressed:       var(--amity-palette-no-59);
+        --amity-button-border-color:                   var(--amity-palette-no-32);
+        --amity-button-disabled-background-color:      var(--amity-palette-no-20);
+        --amity-button-disabled-border-color:          var(--amity-palette-no-32);
+
+        --amity-controls-disabled-color:               var(--amity-palette-no-32);
+        --amity-controls-primary-color:                var(--amity-palette-accent);
+        --amity-controls-primary-focus-color:          var(--amity-palette-accent);
+        --amity-controls-primary-hover-color:          var(--amity-palette-accent);
+
+        --amity-focus-outline-color:                   var(--amity-palette-accent-60);
+
+        --amity-input-background-color:                var(--amity-palette-no-16);
+        --amity-input-background-color-hover:          var(--amity-palette-no-20);
+        --amity-input-background-color-pressed:        var(--amity-palette-no-20);
+        --amity-input-border-color:                    var(--amity-palette-no-32);
+
+        --amity-link-color:                            var(--amity-palette-accent);
+
+        --amity-modal-background-color:                var(--amity-palette-no-16);
+        --amity-modal-border-color:                    var(--amity-palette-accent-60);
+        --amity-modal-header-color:                    var(--amity-palette-no-16);
+
+        --amity-primary-button-background-color:       var(--amity-palette-accent);
+        --amity-primary-button-background-color-hover: var(--amity-palette-accent-120);
+        --amity-primary-button-border-color:           var(--amity-secondary-color);
+        --amity-primary-button-font-color:             var(--amity-gx-font-color);
+
+        --amity-primary-color:                         var(--amity-palette-accent);
+
+        --amity-secondary-background-color:            var(--amity-palette-no-12);
+        --amity-secondary-color:                       var(--amity-palette-accent-60);
+        --amity-secondary-font-color:                  var(--amity-palette-no-77);
+
+        --amity-separator-color:                       var(--amity-palette-no-32);
+
+        --amity-switch-color:                          var(--amity-palette-no-32);
+        --amity-switch-gx-background-color:            var(--amity-palette-no-8);
+        --amity-switch-color-hover:                    var(--amity-font-color);
+        --amity-switch-color-pressed:                  var(--amity-palette-no-77);
+        --amity-switch-toggle-color:                   var(--amity-palette-no-77);
+
+        --amity-unchecked-radio-color:                 var(--amity-palette-no-32);
+    }
+}
