@@ -1,0 +1,7 @@
+{
+    "developer_mozilla": {
+        "matches": ["*://developer.mozilla.org/*"],
+        "cssFile": "developer.mozilla",
+        "displayName": "developer.mozilla.org"
+    }
+}

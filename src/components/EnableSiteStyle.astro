@@ -1,0 +1,13 @@
+---
+import Toggle from "./input/Toggle.astro";
+
+interface Props {
+    key: string;
+    displayName: string;
+}
+
+const { key, displayName } = Astro.props;
+---
+<Toggle type="checkbox" dataset={({ setting: key })} checked>
+    {displayName}
+</Toggle>

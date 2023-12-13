@@ -16,14 +16,8 @@
     },
 
     "permissions": [
-        "tabs",
         "storage",
-        "scripting",
-        "webNavigation"
-    ],
-
-    "host_permissions": [
-        "*://developer.mozilla.org/*"
+        "scripting"
     ],
 
     "action": {
@@ -33,17 +27,6 @@
         "default_title": "Amity Mod",
         "default_popup": "popup.html"
     },
-
-    "web_accessible_resources": [
-        {
-            "resources": ["styles/vars.css"],
-            "matches": ["*://developer.mozilla.org/*"]
-        },
-        {
-            "resources": ["content-styles/developer.mozilla.css"],
-            "matches": ["*://developer.mozilla.org/*"]
-        }
-    ],
 
     "background": {
         "scripts": ["scripts/background.js"],

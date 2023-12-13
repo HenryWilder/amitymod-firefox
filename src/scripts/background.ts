@@ -1,11 +1,13 @@
-export {};
+interface ContentStyleData {
+    matches: string[];
+    cssFile: string;
+    displayName: string;
+}
 
 /**
  * Mapping of settings to the associated content script info
  */
-const CONTENT_STYLE_DATA: { [id: string]: { matches: string[]; cssFile: string } } = {
-    developer_mozilla: { matches: ['*://developer.mozilla.org/*'], cssFile: 'developer.mozilla' },
-};
+export const CONTENT_STYLE_DATA: { [id: string]: ContentStyleData } = await (await fetch('/content-style-data.json')).json();
 
 const isDefined = <T>(x: T | undefined): x is T => x !== undefined;
 

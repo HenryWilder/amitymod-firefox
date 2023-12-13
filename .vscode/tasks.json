@@ -22,6 +22,12 @@
             "group": "build"
         },
         {
+            "label": "Build Content Style Data",
+            "type": "npm",
+            "script": "build-content-style-data",
+            "group": "build"
+        },
+        {
             "label": "Build Astro (all)",
             "type": "npm",
             "script": "build",
