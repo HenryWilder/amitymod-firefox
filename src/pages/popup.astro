@@ -1,6 +1,7 @@
 ---
 import EnableSiteStyle from "@/components/EnableSiteStyle.astro";
 import Button from "@/components/input/Button.astro";
+import Toggle from "@/components/input/Toggle.astro";
 import CONTENT_STYLE_DATA from '@/public/content-style-data.json';
 ---
 
@@ -21,6 +22,9 @@ import CONTENT_STYLE_DATA from '@/public/content-style-data.json';
 			<h2>Enable on</h2>
 
 			{Object.entries(CONTENT_STYLE_DATA).map(([key, {displayName}]) => (<EnableSiteStyle key={key} displayName={displayName}/>))}
+
+			<h2>Misc. features</h2>
+			<Toggle type="checkbox" dataset={{ setting: "convert-braced-to-colored" }}>Convert {"{ braced }"} to <span style="color:dodgerblue">colored</span></Toggle>
 
 			<Button id="save-button" kind="primary">Save</Button>
 		</form>

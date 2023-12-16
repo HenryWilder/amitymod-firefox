@@ -1,3 +1,8 @@
+import { Logger } from '../utility.js';
+
+const logger = new Logger('background/restyle');
+logger.log('test');
+
 interface ContentStyleData {
     matches: string[];
     cssFile: string;
@@ -9,21 +14,9 @@ interface ContentStyleData {
  */
 export const CONTENT_STYLE_DATA: { [id: string]: ContentStyleData } = await (await fetch('/content-style-data.json')).json();
 
-const isDefined = <T>(x: T | undefined): x is T => x !== undefined;
-
-/**
- * Cached copy of settings
- */
-let storedSettings: { [key: string]: any };
-
-/**
- * Update service worker's cached copy of extension settings
- */
-const refreshStoredSettings = async () => {
-    console.log('background: refreshing settings');
-    await browser.storage.sync.get().then((data) => (storedSettings = data));
+export const debugContentScripts = () => {
+    browser.scripting.getRegisteredContentScripts().then((list) => console.debug('background: debugging content scripts:', list));
 };
-await refreshStoredSettings();
 
 /**
  * Generates an updated content script
@@ -60,9 +53,6 @@ await (async () => {
     await browser.scripting.registerContentScripts(registerList);
 })();
 
-const debugContentScripts = () => {
-    browser.scripting.getRegisteredContentScripts().then((list) => console.debug('background: debugging content scripts:', list));
-};
 debugContentScripts();
 
 /**
@@ -79,36 +69,3 @@ const updateAllScripts = async () => {
         console.error('background:', err);
     }
 };
-
-/**
- * Refreshes stored settings updates all scripts
- */
-const updateSettings = async () => {
-    console.log('background: updating settings');
-    try {
-        await refreshStoredSettings();
-        await updateAllScripts();
-    } catch (err: any) {
-        console.error('background:', err);
-    }
-    debugContentScripts();
-};
-
-/**
- * First time
- */
-browser.runtime.onInstalled.addListener(async () => await updateSettings());
-
-/**
- * On settings update
- */
-browser.runtime.onConnect.addListener((port) => {
-    console.log('background: "onConnect" fired');
-    port.onMessage.addListener(async (msg: any) => {
-        console.log('background: "onMessage" fired');
-        if (msg.action === 'update settings') {
-            console.log('background: "update settings" received');
-            await updateSettings();
-        }
-    });
-});
