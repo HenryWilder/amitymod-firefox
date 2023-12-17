@@ -34,14 +34,7 @@
     },
 
     "background": {
-        "scripts": [
-            "scripts/background/utility.js",
-            "scripts/background/settings.js",
-            "scripts/background/restyle.js",
-            "scripts/background/brace-highlight.js",
-            "scripts/background/bat-verification.js",
-            "scripts/background/main.js"
-        ],
+        "scripts": ["scripts/background/main.js"],
         "type": "module"
     }
 }

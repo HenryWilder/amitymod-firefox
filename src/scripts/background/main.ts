@@ -1,7 +1,7 @@
-import { isDefined, Logger } from '../utility.js';
+import { Logger } from '../utility.js';
 import { refreshStoredSettings } from './settings.js';
-import { debugContentScripts } from './restyle.js';
-import { updateBracedToColored } from './brace-highlight.js';
+import { updateRestyle } from './restyle.js';
+import {} from './brace-highlight.js';
 import {} from './bat-verification.js';
 
 const logger = new Logger('background/main', 'orange');
@@ -13,30 +13,27 @@ await refreshStoredSettings();
  * Refreshes stored settings updates all scripts
  */
 const updateSettings = async () => {
-    console.log('background: updating settings');
+    logger.log('updating settings');
     try {
-        await refreshStoredSettings();
-        await Promise.all([updateAllScripts(), updateBracedToColored()]);
+        await refreshStoredSettings(); // Must complete fully before moving on
+        const restylePromise = updateRestyle();
+        await Promise.all([restylePromise]);
     } catch (err: any) {
-        console.error('background:', err);
+        logger.error(err);
     }
-    debugContentScripts();
 };
 
-/**
- * First time
- */
-browser.runtime.onInstalled.addListener(async () => await updateSettings());
+await updateSettings(); // On script initialization
 
 /**
  * On settings update
  */
 browser.runtime.onConnect.addListener((port) => {
-    console.log('background: "onConnect" fired');
+    logger.log('"onConnect" fired');
     port.onMessage.addListener(async (msg: any) => {
-        console.log('background: "onMessage" fired');
+        logger.log('"onMessage" fired');
+        logger.debug('received msg:', msg);
         if (msg.action === 'update settings') {
-            console.log('background: "update settings" received');
             await updateSettings();
         }
     });

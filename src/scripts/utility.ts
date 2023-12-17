@@ -86,7 +86,7 @@ export class Logger implements Console {
  * Contextual `console`\
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/console)
  */
-const logger = new Logger('utility');
+const logger = new Logger('utility', 'violet');
 logger.log('test');
 
 /**
