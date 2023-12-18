@@ -1,32 +1,47 @@
 ---
-import EnableSiteStyle from "@/components/EnableSiteStyle.astro";
-import Button from "@/components/input/Button.astro";
-import Toggle from "@/components/input/Toggle.astro";
+import BasicPage 		  from "src/layouts/BasicPage.astro";
+import EnableSiteStyle    from "@/components/EnableSiteStyle.astro";
+import Button 			  from "@/components/input/Button.astro";
+import Slider  			  from "@/components/input/Slider.astro";
+import Toggle 			  from "@/components/input/Toggle.astro";
 import CONTENT_STYLE_DATA from '@/public/content-style-data.json';
+import Fieldset from "@/components/input/Fieldset.astro";
+
+const stylesheets = ["input", "popup"];
+const modules = [
+	{ src: "popup", defer: true },
+];
+
+const enableStyleData = Object.entries(CONTENT_STYLE_DATA).map(([key, {displayName}]) => ({ key, displayName }));
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8"/>
-		<link rel="icon" type="image" href="/icons/goop-512.png"/>
-		<link rel="stylesheet" href="/styles/vars.css"/>
-		<link rel="stylesheet" href="/styles/input.css"/>
-		<link rel="stylesheet" href="/styles/table-base.css"/>
-		<link rel="stylesheet" href="/styles/basic.css"/>
-		<script type="module" src="/scripts/popup.js" defer></script>
-		<title>Settings - Amity Mod</title>
-	</head>
-	<body>
-		<h1>Amity Mod</h1>
-		<form>
-			<h2>Enable on</h2>
+<BasicPage title="Settings" addStylesheets={stylesheets} addModules={modules}>
+	<form>
+		<h2>Theme</h2>
+		<h3>Accent Color</h3>
+		<Fieldset id="accent-color-fieldset" legend="Accent Color">
+			<Slider min={0} max={360} label="Hue"        dataset={{ setting: "accent-h"     }}/>
+			<Slider min={0} max={100} label="Saturation" dataset={{ setting: "accent-s"     }}/>
+			<Slider min={0} max={100} label="Luminosity" dataset={{ setting: "accent-l"     }}/>
+		</Fieldset>
+		<Fieldset id="background-color-fieldset" legend="Background Color">
+			<Slider min={0} max={360} label="Hue"        dataset={{ setting: "background-h" }}/>
+			<Slider min={0} max={100} label="Saturation" dataset={{ setting: "background-s" }}/>
+			<span><strong>Luminosity:</strong> dark: 16%, light: 84%</span>
+		</Fieldset>
+		<div id="theme-preview">
+			<b>Preview</b>
+			example
+		</div>
 
-			{Object.entries(CONTENT_STYLE_DATA).map(([key, {displayName}]) => (<EnableSiteStyle key={key} displayName={displayName}/>))}
+		<h2>Enable on</h2>
+		{enableStyleData.map(({ key, displayName }) => (<EnableSiteStyle key={key} displayName={displayName}/>) )}
 
-			<h2>Misc. features</h2>
-			<Toggle type="checkbox" dataset={{ setting: "convert-braced-to-colored" }}>Convert {"{ braced }"} to <span style="color:dodgerblue">colored</span></Toggle>
+		<h2>Misc. features</h2>
+		<Toggle type="checkbox" dataset={{ setting: "convert-braced-to-colored" }}>Convert {"{ braced }"} to <span style="color:dodgerblue">colored</span></Toggle>
 
-			<Button id="save-button" kind="primary">Save</Button>
-		</form>
-	</body>
-</html>
+		<hr/>
+
+		<Button id="save-button" kind="primary">Save</Button>
+	</form>
+</BasicPage>

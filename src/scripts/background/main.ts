@@ -4,7 +4,7 @@ import { updateRestyle } from './restyle.js';
 import {} from './brace-highlight.js';
 import {} from './bat-verification.js';
 
-const logger = new Logger('background/main', 'orange');
+const logger = new Logger('background/main', { color: 'orange' });
 logger.log('test');
 
 await refreshStoredSettings();

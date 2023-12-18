@@ -92,8 +92,16 @@ select {
     }
 }
 
-form {
+%column {
     display: flex;
     flex-flow: column;
+}
+
+fieldset {
+    @extend %column;
+}
+
+form {
+    @extend %column;
     gap: 0.5rem;
 }

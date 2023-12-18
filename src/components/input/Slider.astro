@@ -1,0 +1,17 @@
+---
+import { type InputProps, dataAttr } from "@/typescript/input";
+import Label from "./Label.astro";
+
+interface Props extends InputProps {
+    datalist?: `#${string}`;
+    min: number;
+    max: number;
+    step?: number;
+    value?: number;
+}
+
+const { id, label, dataset, datalist, min, max, step, value } = Astro.props;
+---
+<Label label={label}>
+    <input id={id} type="range" list={datalist} {...dataAttr(dataset)} min={min} step={step} max={max} value={value}/>
+</Label>

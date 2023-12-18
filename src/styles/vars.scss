@@ -1,11 +1,16 @@
 :root {
-    --background-color: hsl(256, 23%, 88%);
+    --background-color-l-hsl: 256, 23%, 88%;
+    --background-color-d-hsl: 256, 23%, 16%;
+
+    --background-color-hsl: var(--background-color-l-hsl);
     --foreground-color: black;
 
     @media (prefers-color-scheme: dark) {
-        --background-color: hsl(256, 23%, 16%);
+        --background-color-hsl: var(--background-color-d-hsl);
         --foreground-color: white;
     }
+
+    --background-color: hsl(var(--background-color-hsl));
 
     --accent-color-hsl: 264 94% 53%;
     --accent-color: hsl(var(--accent-color-hsl));

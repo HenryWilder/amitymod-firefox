@@ -1,0 +1,40 @@
+---
+interface Props {
+    /**
+     * The page title.
+     *
+     * Will have ` - Amity Mod` appended to it.
+     */
+    title: string;
+
+    /**
+     * Array of stylesheet `href`s to link in addition to the defaults.
+     * Relative to `/styles/` directory.
+     */
+    addStylesheets?: string[];
+
+    /**
+     * Array of JS modules to link in addition to the defaults.
+     * Relative to `/scripts/` directory and appended with .js.
+     */
+    addModules?: { src: string; defer?: boolean }[];
+}
+const { title, addStylesheets = [], addModules = [] } = Astro.props;
+const sharedStylesheets = ["vars", "basic"];
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="icon" type="image" href="/icons/goop-512.png"/>
+        {[...sharedStylesheets, ...addStylesheets].map((href) => (<link rel="stylesheet" href={`/styles/${href}.css`}/>) )}
+        {addModules.map(({ src, defer }) => (<script type="module" src={`/scripts/${src}.js`} {defer}></script>) )}
+		<title>{title} - Amity Mod</title>
+        <slot name="head"/>
+	</head>
+	<body>
+		<h1>{title} - Amity Mod</h1>
+        <hr/>
+        <slot/>
+	</body>
+</html>

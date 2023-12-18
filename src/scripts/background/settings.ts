@@ -1,6 +1,6 @@
 import { Logger } from '../utility.js';
 
-const logger = new Logger('background/settings', 'cyan');
+const logger = new Logger('background/settings', { color: 'cyan' });
 logger.log('test');
 
 /**

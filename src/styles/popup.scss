@@ -1,0 +1,10 @@
+@use 'var-helpers' as vars;
+
+#theme-preview {
+    background-color: vars.$background-color;
+    b {
+        color: vars.$accent-color;
+        display: block;
+    }
+    color: vars.$accent-foreground-color;
+}
